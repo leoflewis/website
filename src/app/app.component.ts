@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'nhl';
+  title = 'Hockey Stats';
+
+  allGames = [
+    {hometeam:"MN", awayteam: "COL"},
+    {hometeam:"BOS", awayteam: "TOR"}
+  ]
+
+  get games(){
+    return this.allGames
+  }
 }
