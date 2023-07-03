@@ -6,19 +6,31 @@
         Games
       </button>
       <div class="dropdown-content">
-        <a href="#">Today</a>
+        <a routerLink="/todaygames" routerLinkActive="active" ariaCurrentWhenActive="page">Today</a>
         <a href="#">Older</a>
         <a href="#">Upcoming</a>
       </div>
+      <br>
     </div>
     <div class="dropdown">
       <button class="dropbtn">
         Players
       </button>
       <div class="dropdown-content">
+        <a href="/players">Individual</a>
+        <a href="#">Compare</a>
+      </div>
+      <br>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">
+        Teams
+      </button>
+      <div class="dropdown-content">
         <a href="#">Individual</a>
         <a href="#">Compare</a>
       </div>
+      <br>
     </div>
     <div class="dropdown">
       <button class="dropbtn">
@@ -28,6 +40,7 @@
         <a href="#">Standard</a>
         <a href="#">Advanced</a>
       </div>
+      <br>
     </div>
     <div class="dropdown">
       <button class="dropbtn">
@@ -36,10 +49,12 @@
       <div class="dropdown-content">
         <a href="#">Reference</a>
         <a href="#">Author</a>
+        <br>
       </div>
     </div>
   </nav>
   <ul>
     <li *ngFor="let game of games">{{game.hometeam}} vs. {{game.awayteam}}</li>
   </ul>
+  <router-outlet></router-outlet>
 </div>
