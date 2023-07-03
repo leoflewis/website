@@ -7,10 +7,24 @@
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event.option.value)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option.PlayerName}}</mat-option>
       </mat-autocomplete>
-      <button mat-icon-button matSuffix (click)="onClick($event)">
+      <button mat-icon-button matSuffix class="player-search-button" (click)="onClick($event)">
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
+    
 </form> 
+<div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+  <p *ngIf="renderPlayer">Goals: {{playerData.stats[0].splits[0].stat.goals}}</p>
+</div>
   
   

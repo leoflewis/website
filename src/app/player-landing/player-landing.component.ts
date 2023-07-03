@@ -5,11 +5,8 @@ import {MatInputModule} from '@angular/material/input';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Player, PlayerData, Stats, gameType, split, stat, type } from '../models/player';
 
-export interface Player {
-  PlayerName: string;
-  PlayerId: number
-}
 
 @Component({
   selector: 'app-player-landing',
@@ -21,11 +18,16 @@ export class PlayerLandingComponent {
   myControl = new FormControl<string | Player>('');
   options: Player[] = [];
   filteredOptions: Observable<Player[]> | undefined;
+  renderPlayer: boolean | undefined;
 
   player: Player | undefined;
+  playerData: PlayerData;
 
   constructor(private http: HttpClient) { 
     this.showPlayers();
+    this.renderPlayer = false;
+     
+    this.playerData = <PlayerData>{};
   }
 
   ngOnInit() {
@@ -44,8 +46,16 @@ export class PlayerLandingComponent {
     });
   }
 
+  getPlayerImage(){
+
+  }
+
   getPlayers(){
     return this.http.get<Player[]>("http://127.0.0.1:5000/players");
+  }
+
+  getPlayerData(id: number){
+    return this.http.get<PlayerData>("https://statsapi.web.nhl.com/api/v1/people/" + id + "/stats?stats=statsSingleSeason");
   }
 
   displayFn(user: Player): string {
@@ -60,6 +70,12 @@ export class PlayerLandingComponent {
   onClick(e: object){
     if (this.player != undefined){
       console.log(this.player.PlayerName);
+      
+      this.getPlayerData(this.player.PlayerId).subscribe(data => {
+        this.playerData = data;
+        console.log(this.playerData.stats[0].splits[0].stat);
+        this.renderPlayer = true;
+      });
     }
   }
 
