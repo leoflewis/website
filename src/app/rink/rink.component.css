@@ -1,0 +1,255 @@
+#bound {
+    height: 510px;
+    width: 1200px;
+    border: solid 4px grey;
+    border-radius: 150px;
+    position: relative;
+    background-color: smokewhite;
+    z-index: 20;
+  }
+  #center-line {
+    height: 510px;
+    width: 5px;
+    background-color: red;
+    margin-left: 600px;
+    position: absolute;
+  }
+  #blue-line {
+    height: 510px;
+    width: 5px;
+    background-color: blue;
+    margin-left: 450px;
+    position: absolute;
+  }
+  #blue-line2 {
+    height: 510px;
+    width: 5px;
+    background-color: blue;
+    margin-left: 750px;
+    position: absolute;
+  }
+
+  #center-circle {
+    height: 180px;
+    width: 180px;
+    background-color: white;
+    border: solid 3px blue;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-left: 510px;
+    margin-top: 165px;
+  }
+
+  #center2 {
+    height: 8px;
+    width: 8px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -0.5;
+    margin-left: 599px;
+    margin-top: 255px;
+  }
+  #goal-circle1 {
+    height: 180px;
+    width: 180px;
+    background-color: white;
+    border: solid 2px red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-left: 96px;
+    margin-top: 30px;
+  }
+  
+  #goal-circle2 {
+    height: 180px;
+    width: 180px;
+    background-color: white;
+    border: solid 2px red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-left: 96px;
+    margin-top: 294px;
+  }
+  #goal-circle3 {
+    height: 180px;
+    width: 180px;
+    background-color: white;
+    border: solid 2px red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-left: 925px;
+    margin-top: 30px;
+  }
+  
+  #goal-circle4 {
+    height: 180px;
+    width: 180px;
+    background-color: white;
+    border: solid 2px red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-left: 925px;
+    margin-top: 294px;
+  }
+  
+  #net {
+    height: 36px;
+    width: 12px;
+    background-color: white;
+    border: solid 5px red;
+    border-right: white;
+    border-radius: 5%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 50px;
+    margin-top: 240px;
+  }
+  #net2 {
+    height: 36px;
+    width: 12px;
+    background-color: white;
+    border: solid 5px red;
+    border-left: white;
+    border-radius: 5%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 1134px;
+    margin-top: 240px;
+  }
+  #netC {
+    height: 48px;
+    width: 30px;
+    background-color: lightblue;
+    border: solid 5px lightblue;
+    border-right: white;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 0;
+    margin-left: 55px;
+    margin-top: 235px;
+  }
+  #netC2 {
+    height: 48px;
+    width: 30px;
+    background-color: lightblue;
+    border: solid 5px lightblue;
+    border-right: white;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 0;
+    margin-left: 1110px;
+    margin-top: 235px;
+  }
+  #goal-dot1 {
+    height: 5px;
+    width: 5px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 186px;
+    margin-top: 120px;
+  }
+  #goal-dot2 {
+    height: 5px;
+    width: 5px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 186px;
+    margin-top: 384px;
+  }
+  #goal-dot3 {
+    height: 5px;
+    width: 5px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 1014px;
+    margin-top: 120px;
+  }
+  #goal-dot4 {
+    height: 5px;
+    width: 5px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 1014px;
+    margin-top: 384px;
+  }
+  #side-dot1 {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 480px;
+    margin-top: 120px;
+  }
+  #side-dot2 {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 480px;
+    margin-top: 384px;
+  }
+  #side-dot3 {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 0;
+    margin-left: 720px;
+    margin-top: 120px;
+  }
+  #side-dot4 {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 0;
+    margin-left: 720px;
+    margin-top: 384px;
+  }
+  #end {
+    height: 470px;
+    width: 2px;
+    background-color: red;
+    margin-top: 19px;
+    margin-left: 66px;
+    position: absolute;
+    z-index: -1;
+  }
+  #end2 {
+    height: 470px;
+    width: 2px;
+    background-color: red;
+    margin-top: 19px;
+    margin-left: 1134px;
+    position: absolute;
+    z-index: -1;
+  }
+  .shot{
+    height: 5px;
+    width: 5px;
+    background-color: black;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+  

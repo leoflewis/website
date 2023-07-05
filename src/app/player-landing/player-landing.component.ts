@@ -20,13 +20,13 @@ export class PlayerLandingComponent {
   filteredOptions: Observable<Player[]> | undefined;
   renderPlayer: boolean | undefined;
 
-  player: Player | undefined;
+  player: Player;
   playerData: PlayerData;
 
   constructor(private http: HttpClient) { 
     this.showPlayers();
     this.renderPlayer = false;
-     
+    this.player = <Player>{};
     this.playerData = <PlayerData>{};
   }
 
@@ -46,10 +46,6 @@ export class PlayerLandingComponent {
     });
   }
 
-  getPlayerImage(){
-
-  }
-
   getPlayers(){
     return this.http.get<Player[]>("http://127.0.0.1:5000/players");
   }
@@ -63,20 +59,15 @@ export class PlayerLandingComponent {
   }
 
   onSelect(e: Player){
-    console.log(e);
     this.player = e;
+    this.renderPlayer = false;
   }
 
   onClick(e: object){
     if (this.player != undefined){
-      console.log(this.player.PlayerName);
-      
-      this.getPlayerData(this.player.PlayerId).subscribe(data => {
-        this.playerData = data;
-        console.log(this.playerData.stats[0].splits[0].stat);
-        this.renderPlayer = true;
-      });
+      this.renderPlayer = true;
     }
+    this.myControl.setValue('');
   }
 
   private _filter(name: string): Player[] {

@@ -1,0 +1,40 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="bound">
+    <div id="center-line"></div>
+    <div id="blue-line"></div>
+    <div id="blue-line2"></div>
+    <div id="puck"></div>
+    <div id="center-circle"></div>
+    <div id="center"></div>
+    <div id="center2"></div>
+    <div id="goal-circle1"></div>
+    <div id="goal-circle2"></div>
+    <div id="goal-circle3"></div>
+    <div id="goal-circle4"></div>
+    <div id="net"></div>
+    <div id="net2"></div>
+    <div id="netC"></div>
+    <div id="netC2"></div>
+    <div id="goal-dot1"></div>
+    <div id="goal-dot2"></div>
+    <div id="goal-dot3"></div>
+    <div id="goal-dot4"></div>
+    <div id="side-dot1"></div>
+    <div id="side-dot2"></div>
+    <div id="side-dot3"></div>
+    <div id="side-dot4"></div>
+    <div id="end"></div>
+    <div id="end2"></div>
+    <div id="ShotsContainer">
+        <div *ngFor="let shot of shots;">
+            <div class="shot" [ngStyle]="{'margin-left.px': shot.x, 'margin-top.px': shot.y, 'height.px':shot.xG, 'width.px':shot.xG}"></div>
+        </div>
+    </div>
+</div>

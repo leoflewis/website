@@ -16,13 +16,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {NgFor, AsyncPipe} from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { RinkComponent } from './rink/rink.component';
+import { PlayerCardComponent } from './player-card/player-card.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     BarComponent,
     LineComponent,
-    PlayerLandingComponent
+    PlayerLandingComponent,
+    RinkComponent,
+    PlayerCardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
     AsyncPipe,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [provideAnimations()],
   bootstrap: [AppComponent]
