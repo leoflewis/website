@@ -3,6 +3,10 @@ export interface Player {
     PlayerName: string;
     PlayerId: number
 }
+
+export interface PlayersResponse{
+    data: Player[]
+}
   
 export interface PlayerData{
     copyright: string,

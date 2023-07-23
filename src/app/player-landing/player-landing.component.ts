@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Player, PlayerData, Stats, gameType, split, stat, type } from '../models/player';
+import { Player, PlayerData, PlayersResponse, Stats, gameType, split, stat, type } from '../models/player';
 
 
 @Component({
@@ -19,7 +18,7 @@ export class PlayerLandingComponent {
   options: Player[] = [];
   filteredOptions: Observable<Player[]> | undefined;
   renderPlayer: boolean | undefined;
-
+  playersResponse: PlayersResponse;  
   player: Player;
   playerData: PlayerData;
 
@@ -28,6 +27,7 @@ export class PlayerLandingComponent {
     this.renderPlayer = false;
     this.player = <Player>{};
     this.playerData = <PlayerData>{};
+    this.playersResponse = <PlayersResponse> {};
   }
 
   ngOnInit() {
@@ -42,12 +42,12 @@ export class PlayerLandingComponent {
 
   showPlayers(){
     this.getPlayers().subscribe(data => {
-      this.options = data;
+      this.options = data.data;
     });
   }
 
   getPlayers(){
-    return this.http.get<Player[]>("http://127.0.0.1:5000/players");
+    return this.http.get<PlayersResponse>("https://hockey-stats-data.azurewebsites.net/players");
   }
 
   getPlayerData(id: number){
