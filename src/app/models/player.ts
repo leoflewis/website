@@ -9,8 +9,36 @@ export interface PlayersResponse{
 }
   
 export interface PlayerData{
-    copyright: string,
-    stats: Stats[]
+    message: Message
+}
+
+export interface Message{
+    data: ZData
+}
+
+export interface ZData{
+    PM: number,
+    Assists: number,
+    Blocks: number,
+    EVTOI: number,
+    FOpct: number,
+    GWG: number,
+    Games: number,
+    Goals: number,
+    Hits: number,
+    OTG: number,
+    PIMs: number,
+    Points: number,
+    PPGoals: number,
+    PPPoints: number,
+    PPTOI: number,
+    Spct: number,
+    SHG: number,
+    SHP: number,
+    SHTOI: number,
+    SUM: number,
+    Shifts: number,
+    Shots: number
 }
   
 export interface Stats {

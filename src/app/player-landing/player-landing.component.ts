@@ -51,7 +51,7 @@ export class PlayerLandingComponent {
   }
 
   getPlayerData(id: number){
-    return this.http.get<PlayerData>("https://statsapi.web.nhl.com/api/v1/people/" + id + "/stats?stats=statsSingleSeason");
+    return this.http.get<PlayerData>("https://hockey-stats-data.azurewebsites.net/player?playerid=" + id +"&season=20222023");
   }
 
   displayFn(user: Player): string {

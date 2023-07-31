@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js/auto';
+import { ZData } from '../models/player';
 
 @Component({
   selector: 'app-bar',
@@ -11,8 +12,17 @@ export class BarComponent {
   public chart: any;
   public chartid!: string;
   public id!: ActivatedRoute;
+  @Input() dataValues: number[];
+  @Input() labels: string[];
+  @Input() label: string;
+  @Input() colors: string[];
 
-  constructor(private route: ActivatedRoute){}
+  constructor(private route: ActivatedRoute){
+    this.dataValues = <number[]>{};
+    this.labels = <string[]>{};
+    this.label = <string>{};
+    this.colors = <string[]>{};
+  }
 
   ngOnInit(): void {
     this.createChart();
@@ -21,20 +31,16 @@ export class BarComponent {
   }
 
   createChart(){
+    console.log(this.dataValues.length);
     this.chart = new Chart("bar", {
       type: 'bar', //this denotes tha type of chart
       data: {// values on X-Axis
-        labels: ['2015-2016', '2016-2017', '2017-2018','2018-2019', '2019-2020', '2020-2021', '2021-2022','2022-2023', ], 
+        labels: this.labels, 
 	       datasets: [
           {
-            label: "Goals",
-            data: ['10','20', '30', '40', '50','50', '45', '30'],
-            backgroundColor: 'navy'
-          },
-          {
-            label: "Assists",
-            data: ['10', '30', '45', '37', '45','40', '32', '20'],
-            backgroundColor: 'red'
+            label: this.label,
+            data: this.dataValues,
+            backgroundColor: this.colors
           }  
         ]
       },

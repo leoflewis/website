@@ -13,9 +13,9 @@
             <p *ngIf="playerBio.people[0].active"> {{playerBio.people[0].currentAge}} years old </p>            
             <p>{{playerBio.people[0].birthCity}} {{playerBio.people[0].birthStateProvince}} {{playerBio.people[0].birthCountry}}</p>
             <p>{{playerBio.people[0].nationality}}</p>
-            <p>{{playerBio.people[0].height}} {{playerBio.people[0].weight}}</p>
+            <p>{{playerBio.people[0].height}} {{playerBio.people[0].weight}} lbs</p>
         </mat-card-content>
     </mat-card>
-    <app-line></app-line>
+    <app-bar [label]="this.label" [labels]="this.labels" [dataValues]="this.values" [colors]="this.colors"></app-bar>
 </div>
   
