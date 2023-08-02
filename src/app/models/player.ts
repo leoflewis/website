@@ -21,7 +21,6 @@ export interface ZData{
     Assists: number,
     Blocks: number,
     EVTOI: number,
-    FOpct: number,
     GWG: number,
     Games: number,
     Goals: number,
