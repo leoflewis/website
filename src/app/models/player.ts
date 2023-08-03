@@ -1,3 +1,4 @@
+import { Shot } from "./shot";
 
 export interface Player {
     PlayerName: string;
@@ -13,7 +14,8 @@ export interface PlayerData{
 }
 
 export interface Message{
-    data: ZData
+    data: ZData,
+    shots: Shot[]
 }
 
 export interface ZData{

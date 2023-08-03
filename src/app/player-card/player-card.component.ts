@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Player, PlayerData } from '../models/player';
 import { HttpClient } from '@angular/common/http';
 import { PlayerBio } from '../models/player-bio';
+import { Shot } from '../models/shot';
 
 @Component({
   selector: 'app-player-card',
@@ -16,6 +17,7 @@ export class PlayerCardComponent {
   values: number[];
   colors: string[];
   labels: string[];
+  shots: Shot[];
   label = "Z Scores";
 
   constructor(private http: HttpClient) { 
@@ -26,6 +28,7 @@ export class PlayerCardComponent {
     this.values = [];
     this.colors = [];
     this.labels = [];
+    this.shots = [];
   }
 
   ngOnInit() {
@@ -37,6 +40,7 @@ export class PlayerCardComponent {
           this.labels = ["Games", "EV TOI","Points", "Goals", "Assists", "Shots", "Sh%", "Blocks", "EVTOI", "GWG", "Hits", "OTG", "PIMs", "+/-", "PP G", "PP P", "PP TOI", "SH G", "SH P", "SH TOI", "Shifts"];
           this.getPlayerData(this.id).subscribe(data => {
             this.playerData = data;
+            this.shots = this.playerData.message.shots;
             this.values.push(this.playerData.message.data.Games);
             this.values.push(this.playerData.message.data.EVTOI);
             this.values.push(this.playerData.message.data.Points);
