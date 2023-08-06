@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Player, PlayerData } from '../models/player';
+import { GoalieMessage, Player, PlayerData } from '../models/player';
 import { HttpClient } from '@angular/common/http';
 import { PlayerBio } from '../models/player-bio';
 import { Shot } from '../models/shot';
@@ -18,7 +18,8 @@ export class PlayerCardComponent {
   colors: string[];
   labels: string[];
   shots: Shot[];
-  label = "Z Scores";
+  label = "";
+  goalieData: GoalieMessage;
 
   constructor(private http: HttpClient) { 
     this.playerData = <PlayerData>{};
@@ -29,6 +30,7 @@ export class PlayerCardComponent {
     this.colors = [];
     this.labels = [];
     this.shots = [];
+    this.goalieData = <GoalieMessage>{};
   }
 
   ngOnInit() {
@@ -37,6 +39,7 @@ export class PlayerCardComponent {
         this.playerBio = data;
         console.log(this.playerBio.people[0].primaryPosition.name)
         if(this.playerBio.people[0].primaryPosition.name != "Goalie"){
+          this.label = "Z Scores";
           this.labels = ["Games", "EV TOI","Points", "Goals", "Assists", "Shots", "Sh%", "Blocks", "EVTOI", "GWG", "Hits", "OTG", "PIMs", "+/-", "PP G", "PP P", "PP TOI", "SH G", "SH P", "SH TOI", "Shifts"];
           this.getPlayerData(this.id).subscribe(data => {
             this.playerData = data;
@@ -72,7 +75,17 @@ export class PlayerCardComponent {
             this.render = true;
           });
         } else{
-          this.render = true;
+          this.labels = ["GA", "xG"];
+          this.label = "Goals Against vs Expected Goals"
+          this.getGoalieData(this.id).subscribe(data => {
+            this.goalieData = data;
+            this.shots = this.goalieData.message.shots;
+            this.values.push(this.goalieData.message.GA);
+            this.values.push(this.goalieData.message.xG);
+            this.colors.push("red");
+            this.colors.push("Navy");
+            this.render = true;
+          });
         }
       });
     }
@@ -84,6 +97,10 @@ export class PlayerCardComponent {
 
   getPlayerData(id: number){
     return this.http.get<PlayerData>("https://hockey-stats-data.azurewebsites.net/player?playerid=" + id +"&season=20222023");
+  }
+
+  getGoalieData(id: number){
+    return this.http.get<GoalieMessage>("https://hockey-stats-data.azurewebsites.net/goalie?playerid=" + id +"&season=20222023");
   }
 
 }

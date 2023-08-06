@@ -18,6 +18,16 @@ export interface Message{
     shots: Shot[]
 }
 
+export interface GoalieMessage{
+    message: GoalieMessage
+}
+
+
+export interface GoalieMessage{
+    GA: number,
+    xG: number,
+    shots: Shot[]
+}
 export interface ZData{
     PM: number,
     Assists: number,
