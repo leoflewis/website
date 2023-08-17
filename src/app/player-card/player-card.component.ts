@@ -40,7 +40,7 @@ export class PlayerCardComponent {
         console.log(this.playerBio.people[0].primaryPosition.name)
         if(this.playerBio.people[0].primaryPosition.name != "Goalie"){
           this.label = "Z Scores";
-          this.labels = ["Games", "EV TOI","Points", "Goals", "Assists", "Shots", "Sh%", "Blocks", "EVTOI", "GWG", "Hits", "OTG", "PIMs", "+/-", "PP G", "PP P", "PP TOI", "SH G", "SH P", "SH TOI", "Shifts"];
+          this.labels = ["Games", "EV TOI","Points", "Goals", "Assists", "Shots", "Sh%", "Blocks", "GWG", "Hits", "OTG", "PIMs", "+/-", "PP G", "PP P", "PP TOI", "SH G", "SH P", "SH TOI", "Shifts"];
           this.getPlayerData(this.id).subscribe(data => {
             this.playerData = data;
             this.shots = this.playerData.message.shots;
@@ -52,7 +52,6 @@ export class PlayerCardComponent {
             this.values.push(this.playerData.message.data.Shots);
             this.values.push(this.playerData.message.data.Spct);
             this.values.push(this.playerData.message.data.Blocks);
-            this.values.push(this.playerData.message.data.EVTOI);
             this.values.push(this.playerData.message.data.GWG);
             this.values.push(this.playerData.message.data.Hits);
             this.values.push(this.playerData.message.data.OTG);
