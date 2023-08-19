@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { BarComponent } from './bar/bar.component';
 import { LineComponent } from './line/line.component';
 import { PlayerLandingComponent } from './player-landing/player-landing.component';
-
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,6 +21,11 @@ import { RinkComponent } from './rink/rink.component';
 import { PlayerCardComponent } from './player-card/player-card.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { SkatersTableComponent } from './skaters-table/skaters-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,9 @@ import {MatCardModule} from '@angular/material/card';
     LineComponent,
     PlayerLandingComponent,
     RinkComponent,
-    PlayerCardComponent
+    PlayerCardComponent,
+    SkatersTableComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,12 @@ import {MatCardModule} from '@angular/material/card';
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatListModule
   ],
   providers: [provideAnimations()],
   bootstrap: [AppComponent]
