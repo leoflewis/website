@@ -19,14 +19,16 @@ import {MatSort, MatSortModule, Sort } from '@angular/material/sort';
 })
 
 export class SkatersTableComponent implements AfterViewInit{
-  myForm = new FormGroup({});
+  myForm = new FormGroup({
+    year: new FormControl()
+  });
   dataSource = new MatTableDataSource<Skater>();
   displayedColumns = ['PlayerName', 'GP', 'Genos', 'Apples', 'Points', 'xG','Shots', 'Hits', 'TOI', 'GWG', 'OTG', 'PenM', 'FOPCT', 'SPct', 'Blocks', 'PM', 'shifts', 'PPG', 'PPP', 'PPTOI', 'SHG', 'SHP', 'SHTOI'];
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
   @ViewChild(MatSort)sort: MatSort = new MatSort;
   sampleSkater: Skater[];
   sortedData: Skater[] = <Skater[]>{};
-  year = new FormControl();
+  booleanValue: any = true;
 
   constructor(private http: HttpClient){
     this.sampleSkater = [
@@ -68,15 +70,39 @@ export class SkatersTableComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-
-  onClick(e: object){
-    console.log(this.year);
-    console.log(e);
-    console.log(this.myForm);
+  changeClient(value: object) {
+    console.log(value);
     this.getSkaterData(20222023).subscribe(data => {
       this.dataSource = new MatTableDataSource(data.message.data);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  sortFunction(colName: string, boolean: any) {
+    console.log(colName);
+    switch (colName){
+      case "Genos":
+        if (this.booleanValue == true){
+          this.dataSource.data.sort((a: Skater, b: Skater) => a.Genos < b.Genos ? 1 : a.Genos > b.Genos ? -1 : 0);
+          this.booleanValue = !this.booleanValue
+        }
+        else{
+          this.dataSource.data.sort((a: Skater, b: Skater) => a.Genos > b.Genos ? 1 : a.Genos < b.Genos ? -1 : 0);
+          this.booleanValue = !this.booleanValue
+        }
+        break;
+      case "xG":
+        if (this.booleanValue == true){
+          this.dataSource.data.sort((a: Skater, b: Skater) => a.xG < b.xG ? 1 : a.xG > b.xG ? -1 : 0);
+          this.booleanValue = !this.booleanValue
+        }
+        else{
+          this.dataSource.data.sort((a: Skater, b: Skater) => a.xG > b.xG ? 1 : a.xG < b.xG ? -1 : 0);
+          this.booleanValue = !this.booleanValue
+        }
+        break;
+    }
+    this.ngAfterViewInit();
   }
 
   getSkaterData(season: number){
@@ -84,6 +110,3 @@ export class SkatersTableComponent implements AfterViewInit{
   }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}

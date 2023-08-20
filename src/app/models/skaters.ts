@@ -24,7 +24,6 @@ export interface Skater{
     shifts: number,
     xG: number
 }
-
 export interface SkaterMessage{
     message: SkaterData
 }

@@ -36,3 +36,10 @@ table {
   th.mat-sort-header-sorted {
     color: black;
   }
+
+  .mat-cell:nth-child(even){
+    background-color: #a8adef;
+  }
+  .mat-cell:nth-child(odd){
+    background-color:#eca6a6;
+  }

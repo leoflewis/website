@@ -1,140 +1,136 @@
 <br>
 <br>
-<br>
 <form class="example-form" [formGroup]="myForm">
-    <mat-form-field >
+    <mat-form-field class="example-full-width" >
         <mat-label>Year</mat-label>
-        <mat-select>
-            <mat-option [formControl]="year" value="20222023">2022-2023</mat-option>
-            <mat-option value="20222023">2023-2024</mat-option>
+        <mat-select (selectionChange)="changeClient($event.value)">
+            <mat-option [value]="20222023">2022-2023</mat-option>
+            <mat-option [value]="20222023">2023-2024</mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-icon-button matSuffix class="player-search-button" (click)="onClick($event)">
-        <mat-icon>search</mat-icon>
-    </button>
 </form>
 
 
 <div class="mat-elevation-z8" style="overflow-x:scroll;" >
 
-    <table mat-table [dataSource]="this.dataSource" matSort matSortActive="PlayerName" matSortDirection="asc">
+    <table mat-table [dataSource]="this.dataSource" matSort>
         <ng-container matColumnDef="PlayerName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</th>
-            <td mat-cell *matCellDef="let skater"> {{skater.PlayerName}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td  mat-cell *matCellDef="let skater"> {{skater.PlayerName}} </td>
         </ng-container>
   
-        <ng-container matColumnDef="GP" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="GP" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>Games Played</th>
-            <td mat-cell *matCellDef="let skater"> {{skater.GP}} </td>
+            <td  mat-cell *matCellDef="let skater"> {{skater.GP}} </td>
         </ng-container>
     
-        <ng-container matColumnDef="Genos" mat-sort-header sortActionDescription="Sort by number">
-            <th mat-header-cell *matHeaderCellDef>Genos</th>
-            <td mat-cell *matCellDef="let skater"> {{skater.Genos}} </td>
+        <ng-container matColumnDef="Genos" mat-sort-header>
+            <th mat-header-cell *matHeaderCellDef (click)="sortFunction(displayedColumns[2], booleanValue)">Genos</th>
+            <td  mat-cell *matCellDef="let skater"> {{skater.Genos}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Apples" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="Apples" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>Apples</th>
-            <td mat-cell *matCellDef="let skater"> {{skater.Apples}} </td>
+            <td  mat-cell *matCellDef="let skater"> {{skater.Apples}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Points" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="Points" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>Points</th>
-            <td mat-cell *matCellDef="let skater" > {{skater.Points}} </td>
+            <td  mat-cell *matCellDef="let skater" > {{skater.Points}} </td>
         </ng-container>
     
-        <ng-container matColumnDef="xG" mat-sort-header sortActionDescription="Sort by number">
-            <th mat-header-cell *matHeaderCellDef>xG</th>
+        <ng-container matColumnDef="xG" mat-sort-header >
+            <th mat-header-cell *matHeaderCellDef (click)="sortFunction(displayedColumns[5], booleanValue)">xG</th>
             <td mat-cell *matCellDef="let skater"> {{skater.xG}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Shots" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="Shots" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>Shots</th>
             <td mat-cell *matCellDef="let skater"> {{skater.Shots}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Hits" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="Hits" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>Hits</th>
             <td mat-cell *matCellDef="let skater"> {{skater.Hits}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="TOI" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="TOI" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>TOI</th>
             <td mat-cell *matCellDef="let skater"> {{skater.TOI}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="GWG" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="GWG" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>GWG</th>
             <td mat-cell *matCellDef="let skater"> {{skater.GWG}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="OTG" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="OTG" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>OTG</th>
             <td mat-cell *matCellDef="let skater"> {{skater.OTG}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="PenM" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="PenM" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>Pen Mins</th>
             <td mat-cell *matCellDef="let skater"> {{skater.PenM}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="FOPCT" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="FOPCT" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>FO%</th>
             <td mat-cell *matCellDef="let skater"> {{skater.FOPCT}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="SPct" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="SPct" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>S%</th>
             <td mat-cell *matCellDef="let skater"> {{skater.SPct}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Blocks" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="Blocks" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>Blocks</th>
             <td mat-cell *matCellDef="let skater"> {{skater.Blocks}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="PM" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="PM" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>+/-</th>
             <td mat-cell *matCellDef="let skater"> {{skater.PM}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="shifts" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="shifts" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>Shifts</th>
             <td mat-cell *matCellDef="let skater"> {{skater.shifts}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="PPG" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="PPG" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>PPG</th>
             <td mat-cell *matCellDef="let skater"> {{skater.PPG}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="PPP" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="PPP" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>PPP</th>
             <td mat-cell *matCellDef="let skater"> {{skater.PPP}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="PPTOI" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="PPTOI" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>PPTOI</th>
             <td mat-cell *matCellDef="let skater"> {{skater.PPTOI}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="SHG" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="SHG" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>SHG</th>
             <td mat-cell *matCellDef="let skater"> {{skater.SHG}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="SHP" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="SHP" mat-sort-header >
             <th mat-header-cell *matHeaderCellDef>SHP</th>
             <td mat-cell *matCellDef="let skater"> {{skater.SHP}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="SHTOI" mat-sort-header sortActionDescription="Sort by number">
+        <ng-container matColumnDef="SHTOI" mat-sort-header>
             <th mat-header-cell *matHeaderCellDef>SHTOI</th>
             <td mat-cell *matCellDef="let skater"> {{skater.SHTOI}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row class="mat-cell" *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   
     <mat-paginator [pageSizeOptions]="[50,100]" showFirstLastButtons aria-label="Select page"></mat-paginator>
