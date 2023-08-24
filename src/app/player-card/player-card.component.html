@@ -9,10 +9,10 @@
         </mat-card-header>
         <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{id}}.jpg">
         <mat-card-content>
-            <p>{{playerBio.people[0].birthDate}} </p>
-            <p *ngIf="playerBio.people[0].active"> {{playerBio.people[0].currentAge}} years old </p>            
+            <p>DOB: {{playerBio.people[0].birthDate}} </p>
+            <p *ngIf="playerBio.people[0].active">{{playerBio.people[0].currentAge}} years old </p>            
             <p>{{playerBio.people[0].birthCity}} {{playerBio.people[0].birthStateProvince}} {{playerBio.people[0].birthCountry}}</p>
-            <p>{{playerBio.people[0].nationality}}</p>
+            <p>Nationality: {{playerBio.people[0].nationality}}</p>
             <p>{{playerBio.people[0].height}} {{playerBio.people[0].weight}} lbs</p>
         </mat-card-content>
     </mat-card>
@@ -22,9 +22,7 @@
     <app-rink [shots]="this.shots"></app-rink>
     <p>
         <span style="color: Aqua;">Goals</span>
-        ,
-        Shots
-        and
+        , Shots and
         <span style="color: SpringGreen;">Missed Shots</span>
         are scaled by xG value.
     </p>
