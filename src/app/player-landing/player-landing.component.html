@@ -1,14 +1,21 @@
 <br>
 <br>
 <form class="example-form">
-    <mat-form-field class="example-full-width">
+    <mat-form-field >
       <mat-label>Player</mat-label>
       <input #playerInput type="text" matInput placeholder="Search for player" [formControl]="myControl" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event.option.value)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option.PlayerName}}</mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <button mat-icon-button matSuffix class="player-search-button" (click)="onClick($event)">
+    <mat-form-field  >
+        <mat-label>Year</mat-label>
+        <mat-select>
+          <mat-option [value]="20222023">2022-2023</mat-option>
+          <mat-option [value]="20222023">2023-2024</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-icon-button matSuffix (click)="onClick($event)">
       <mat-icon>search</mat-icon>
     </button>
 </form> 
