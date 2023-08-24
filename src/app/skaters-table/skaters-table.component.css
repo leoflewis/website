@@ -43,3 +43,11 @@ table {
   .mat-cell:nth-child(odd){
     background-color:#eca6a6;
   }
+
+  table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }

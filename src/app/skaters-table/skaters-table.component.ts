@@ -25,49 +25,54 @@ export class SkatersTableComponent implements AfterViewInit{
   dataSource = new MatTableDataSource<Skater>();
   displayedColumns = ['PlayerName', 'GP', 'Genos', 'Apples', 'Points', 'xG','Shots', 'Hits', 'TOI', 'GWG', 'OTG', 'PenM', 'FOPCT', 'SPct', 'Blocks', 'PM', 'shifts', 'PPG', 'PPP', 'PPTOI', 'SHG', 'SHP', 'SHTOI'];
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
-  @ViewChild(MatSort)sort: MatSort = new MatSort;
-  sampleSkater: Skater[];
+  @ViewChild(MatSort) sort: MatSort;
+  sampleSkater: Skater[] = <Skater[]>{};
   sortedData: Skater[] = <Skater[]>{};
   booleanValue: any = true;
 
   constructor(private http: HttpClient){
+   
+  }
+
+  ngOnInit() {
     this.sampleSkater = [
-    {
-      PM: 0,
-      Apples: 0,
-      Blocks: 0,
-      EVTOI: 0,
-      FOPCT: 0,
-      GP: 0,
-      GWG: 0,
-      Genos: 0,
-      Hits: 0,
-      OTG: 0,
-      PPG: 0,
-      PPP: 0,
-      PPTOI: 0,
-      PenM: 0,
-      PlayerName: "Loading",
-      Points: 0,
-      SHG: 0,
-      SHP: 0,
-      SHTOI: 0,
-      SPct: 0,
-      Shots: 0,
-      TOI: 0,
-      shifts: 0,
-      xG: 0
-    }]
+      {
+        PM: 0,
+        Apples: 0,
+        Blocks: 0,
+        EVTOI: 0,
+        FOPCT: 0,
+        GP: 0,
+        GWG: 0,
+        Genos: 0,
+        Hits: 0,
+        OTG: 0,
+        PPG: 0,
+        PPP: 0,
+        PPTOI: 0,
+        PenM: 0,
+        PlayerName: "Loading",
+        Points: 0,
+        SHG: 0,
+        SHP: 0,
+        SHTOI: 0,
+        SPct: 0,
+        Shots: 0,
+        TOI: 0,
+        shifts: 0,
+        xG: 0
+      }]
     this.dataSource = new MatTableDataSource(this.sampleSkater);
-    if (!this.dataSource.sort) {this.dataSource.sort = this.sort;}
     this.getSkaterData(20222023).subscribe(data => {
       this.dataSource = new MatTableDataSource(data.message.data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   changeClient(value: object) {
@@ -76,33 +81,6 @@ export class SkatersTableComponent implements AfterViewInit{
       this.dataSource = new MatTableDataSource(data.message.data);
       this.dataSource.paginator = this.paginator;
     });
-  }
-
-  sortFunction(colName: string, boolean: any) {
-    console.log(colName);
-    switch (colName){
-      case "Genos":
-        if (this.booleanValue == true){
-          this.dataSource.data.sort((a: Skater, b: Skater) => a.Genos < b.Genos ? 1 : a.Genos > b.Genos ? -1 : 0);
-          this.booleanValue = !this.booleanValue
-        }
-        else{
-          this.dataSource.data.sort((a: Skater, b: Skater) => a.Genos > b.Genos ? 1 : a.Genos < b.Genos ? -1 : 0);
-          this.booleanValue = !this.booleanValue
-        }
-        break;
-      case "xG":
-        if (this.booleanValue == true){
-          this.dataSource.data.sort((a: Skater, b: Skater) => a.xG < b.xG ? 1 : a.xG > b.xG ? -1 : 0);
-          this.booleanValue = !this.booleanValue
-        }
-        else{
-          this.dataSource.data.sort((a: Skater, b: Skater) => a.xG > b.xG ? 1 : a.xG < b.xG ? -1 : 0);
-          this.booleanValue = !this.booleanValue
-        }
-        break;
-    }
-    this.ngAfterViewInit();
   }
 
   getSkaterData(season: number){
