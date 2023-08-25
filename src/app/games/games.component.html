@@ -1,5 +1,7 @@
 <mat-card *ngFor="let game of games">
     <h1>{{game.teams.home.team.name}} vs {{game.teams.away.team.name}}</h1>
+    <img mat-card-image src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{game.teams.home.team.id}}.svg">
+    <img mat-card-image src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{game.teams.away.team.id}}.svg">
     <h1>{{game.teams.home.score}} vs {{game.teams.away.score}}</h1>
     <p>{{game.venue.name}}</p>
 </mat-card>
