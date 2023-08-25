@@ -26,6 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSortModule } from '@angular/material/sort';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {MatSortModule } from '@angular/material/sort';
     RinkComponent,
     PlayerCardComponent,
     SkatersTableComponent,
+    GamesComponent,
     
   ],
   imports: [

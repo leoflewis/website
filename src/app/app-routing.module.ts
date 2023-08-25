@@ -5,12 +5,13 @@ import { LineComponent } from './line/line.component';
 import { PlayerLandingComponent } from './player-landing/player-landing.component';
 import { RinkComponent } from './rink/rink.component';
 import { SkatersTableComponent } from './skaters-table/skaters-table.component';
+import { GamesComponent } from './games/games.component';
 
 const routes: Routes = [
-  {path: "todaygames", component: BarComponent},
   {path: "players", component: PlayerLandingComponent},
   {path: "upcoming", component: RinkComponent},
-  {path: "skaters", component: SkatersTableComponent}
+  {path: "skaters", component: SkatersTableComponent},
+  {path: "todaygames", component: GamesComponent,}
 ];
 
 @NgModule({

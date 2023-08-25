@@ -23,7 +23,6 @@ export class PlayerLandingComponent {
   playerData: PlayerData;
 
   constructor(private http: HttpClient) { 
-    this.showPlayers();
     this.renderPlayer = false;
     this.player = <Player>{};
     this.playerData = <PlayerData>{};
@@ -31,6 +30,7 @@ export class PlayerLandingComponent {
   }
 
   ngOnInit() {
+    this.showPlayers();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {

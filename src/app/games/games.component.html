@@ -1,0 +1,5 @@
+<mat-card *ngFor="let game of games">
+    <h1>{{game.teams.home.team.name}} vs {{game.teams.away.team.name}}</h1>
+    <h1>{{game.teams.home.score}} vs {{game.teams.away.score}}</h1>
+    <p>{{game.venue.name}}</p>
+</mat-card>
