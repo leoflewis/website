@@ -1,17 +1,11 @@
-  .example-form {
-    min-width: 150px;
-    max-width: 100%;
-    width: 100%;
-  }
+.example-form {
+  width: 1000px;
+}
 
-  .example-form-field {
-    width: 200px;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+mat-form-field {
+  width: 100%;
+}
 
-  .player-search-button {
-    float: right
-  }
+mat-icon-button {
+  float: right
+}
