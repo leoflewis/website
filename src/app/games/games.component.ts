@@ -8,7 +8,7 @@ import { GameMessage, Games } from '../models/game';
   styleUrls: ['./games.component.css']
 })
 export class GamesComponent {
-
+  game: Games;
   games: Games[];
 
   constructor(private http: HttpClient){
@@ -19,6 +19,10 @@ export class GamesComponent {
     this.getGames().subscribe(data => {
       this.games = data.dates[0].games;
     });
+  }
+
+  onClick(e: Games){
+    this.game = e;
   }
 
   getGames(){

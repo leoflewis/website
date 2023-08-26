@@ -12,4 +12,13 @@
         </div>
     </div>
     <p>{{game.venue.name}}</p>
+    <button mat-icon-button matSuffix (click)="onClick(game)">
+        <mat-icon>forward icon</mat-icon>
+    </button>
 </mat-card>
+
+<div>
+    <ng-container *ngIf="game"> 
+        <h3>{{this.game.gamePk}}</h3>
+    </ng-container> 
+</div>
