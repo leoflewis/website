@@ -80,6 +80,7 @@ export class SkatersTableComponent implements AfterViewInit{
     this.getSkaterData(20222023).subscribe(data => {
       this.dataSource = new MatTableDataSource(data.message.data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
