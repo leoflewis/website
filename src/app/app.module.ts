@@ -30,6 +30,7 @@ import { GamesComponent } from './games/games.component';
 import { HistoricGamesComponent } from './historic-games/historic-games.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { TeamsComponent } from './teams/teams.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     SkatersTableComponent,
     GamesComponent,
     HistoricGamesComponent,
+    TeamsComponent,
     
   ],
   imports: [

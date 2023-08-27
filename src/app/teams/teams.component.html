@@ -1,0 +1,12 @@
+<div>
+    <form [formGroup]="form">
+        <mat-form-field >
+            <mat-label>Team</mat-label>
+            <mat-select (selectionChange)="onChange()" formControlName="teamObj">
+                <mat-option [value]="team.id" *ngFor="let team of teams">
+                    {{team.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> 
+    </form>
+</div>
