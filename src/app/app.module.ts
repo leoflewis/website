@@ -27,6 +27,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSortModule } from '@angular/material/sort';
 import { GamesComponent } from './games/games.component';
+import { HistoricGamesComponent } from './historic-games/historic-games.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +42,7 @@ import { GamesComponent } from './games/games.component';
     PlayerCardComponent,
     SkatersTableComponent,
     GamesComponent,
+    HistoricGamesComponent,
     
   ],
   imports: [
@@ -60,7 +65,9 @@ import { GamesComponent } from './games/games.component';
     MatSelectModule,
     MatMenuModule,
     MatListModule,
-    MatSortModule
+    MatSortModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   exports: [
     MatSortModule

@@ -12,7 +12,7 @@ export class GamesComponent {
   games: Games[];
 
   constructor(private http: HttpClient){
-    this.games = <Games[]>{};
+    this.games = [];
   }
 
   ngOnInit(){
