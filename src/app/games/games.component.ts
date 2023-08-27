@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component  } from '@angular/core';
 import { GameMessage, Games } from '../models/game';
 
 @Component({

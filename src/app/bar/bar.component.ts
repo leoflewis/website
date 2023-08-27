@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Chart from 'chart.js/auto';
 import { ZData } from '../models/player';
@@ -8,7 +8,7 @@ import { ZData } from '../models/player';
   templateUrl: './bar.component.html',
   styleUrls: ['./bar.component.css']
 })
-export class BarComponent {
+export class BarComponent implements OnDestroy{
   public chart: any;
   public chartid!: string;
   public id!: ActivatedRoute;
@@ -17,21 +17,24 @@ export class BarComponent {
   @Input() label: string;
   @Input() colors: string[];
 
-  constructor(private route: ActivatedRoute){
+  constructor(private route: ActivatedRoute) {
     this.dataValues = <number[]>{};
     this.labels = <string[]>{};
     this.label = <string>{};
     this.colors = <string[]>{};
   }
+  ngOnDestroy(): void {
+    this.chart.destroy();
+  }
 
   ngOnInit(): void {
+    this.chartid = "Chart" + Math.floor(Math.random() * 101).toString();
+    console.log(this.chartid);
     this.createChart();
-    this.chartid = "Chart1";
     this.id = this.route;
   }
 
   createChart(){
-    console.log(this.dataValues.length);
     this.chart = new Chart("bar", {
       type: 'bar', //this denotes tha type of chart
       data: {// values on X-Axis
