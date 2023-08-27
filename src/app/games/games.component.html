@@ -5,17 +5,24 @@
         <div class="column">
             <img mat-card-image  src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{game.teams.home.team.id}}.svg">
             <h1>{{game.teams.home.score}} </h1>
+            <p>{{game.teams.home.leagueRecord.wins}} - {{game.teams.home.leagueRecord.losses}} - {{game.teams.home.leagueRecord.ot}}</p>
+            <h2>Predicted win probability:</h2>
+            <h1>40%</h1>
         </div>
         <div class="column">
             <img mat-card-image src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{game.teams.away.team.id}}.svg">
             <h1>{{game.teams.away.score}}</h1>
+            <p>{{game.teams.away.leagueRecord.wins}} - {{game.teams.away.leagueRecord.losses}} - {{game.teams.away.leagueRecord.ot}}</p>
+            <h2>Predicted win probability:</h2>
+            <h1>60%</h1>
         </div>
     </div>
-    <p></p>
+    <p>{{game.status.detailedState}} {{ game.gameDate | date :'short'}}</p>
     <p>{{game.venue.name}}</p>
     <button mat-icon-button matSuffix (click)="onClick(game)">
         <mat-icon>forward icon</mat-icon>
     </button>
+    <p>Click to show details below.</p>
 </mat-card>
 
 <div>

@@ -1,19 +1,16 @@
-<br>
-<br>
-<br>
 <div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p>Search by team or date.</p>
         <mat-form-field>
-            <mat-label>Team</mat-label>
+            <mat-label>Search by team</mat-label>
             <mat-select formControlName="teamObj">
                 <mat-option [value]="team.id" *ngFor="let team of teams">
                     {{team.name}}
                 </mat-option>
             </mat-select>
         </mat-form-field> 
+        <p>and/or</p>
         <mat-form-field class="example-full-width">
-            <mat-label>Choose a date</mat-label>
+            <mat-label>Search by date</mat-label>
             <input matInput formControlName="date" [matDatepicker]="picker">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker">

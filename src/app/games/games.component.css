@@ -1,6 +1,13 @@
 mat-card{
     width: 100%;
 }
+
+mat-card:nth-child(even){
+    background-color: #a8adef;
+}
+mat-card:nth-child(odd){
+    background-color:#eca6a6;
+}
 .row {
     display: flex;
 }
@@ -14,6 +21,7 @@ p{
     flex: 50%;
     padding: 10px;
     align-items: end;
+    text-align: center;
 }
 
 img{

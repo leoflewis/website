@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component  } from '@angular/core';
 import { GameMessage, Games } from '../models/game';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-games',
@@ -19,6 +20,10 @@ export class GamesComponent {
     this.getGames().subscribe(data => {
       this.games = data.dates[0].games;
     });
+  }
+
+  formattedDate(date: Date){
+    return formatDate(date, "dd/MM/yyyy", "en-US")
   }
 
   onClick(e: Games){
