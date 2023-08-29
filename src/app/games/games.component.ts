@@ -19,6 +19,11 @@ export class GamesComponent {
   ngOnInit(){
     this.getGames().subscribe(data => {
       this.games = data.dates[0].games;
+      this.games.forEach(game => {
+        var y = Math.random();
+        game.teams.away.prediction = y > .5 ? "favored": "not-favored";
+        game.teams.home.prediction = y < .5 ? "favored": "not-favored";
+      });
     });
   }
 

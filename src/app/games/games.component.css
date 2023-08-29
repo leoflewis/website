@@ -1,11 +1,12 @@
 mat-card{
     width: 100%;
+    background-color: #b1b1b7;
 }
 
-mat-card:nth-child(even){
+.favored{
     background-color: #a8adef;
 }
-mat-card:nth-child(odd){
+.not-favored{
     background-color:#eca6a6;
 }
 .row {

@@ -16,7 +16,7 @@ import { Player, PlayerData, PlayersResponse, Stats, gameType, split, stat, type
 export class PlayerLandingComponent {
   myControl = new FormControl<string | Player>('');
   options: Player[] = [];
-  filteredOptions: Observable<Player[]> | undefined;
+  filteredOptions: Observable<Player[]>;
   renderPlayer: boolean | undefined;
   playersResponse: PlayersResponse;  
   player: Player;

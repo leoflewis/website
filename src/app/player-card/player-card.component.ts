@@ -37,9 +37,8 @@ export class PlayerCardComponent {
     if (this.id != undefined){
       this.getPlayerBio(this.id).subscribe(data => {
         this.playerBio = data;
-        console.log(this.playerBio.people[0].primaryPosition.name)
         if(this.playerBio.people[0].primaryPosition.name != "Goalie"){
-          this.label = "Z Scores";
+          this.label = "Season Totals";
           this.labels = ["Games", "EV TOI","Points", "Goals", "Assists", "Shots", "Sh%", "Blocks", "GWG", "Hits", "OTG", "PIMs", "+/-", "PP G", "PP P", "PP TOI", "SH G", "SH P", "SH TOI", "Shifts"];
           this.getPlayerData(this.id).subscribe(data => {
             this.playerData = data;

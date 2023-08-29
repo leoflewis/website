@@ -51,7 +51,8 @@ export interface Games{
                 id: number,
                 name: string,
                 link: string
-            }
+            },
+            prediction: string
         },
         home: {
             leagueRecord: {
@@ -65,7 +66,8 @@ export interface Games{
                 id: number,
                 name: string,
                 link: string
-            }
+            },
+            prediction: string
         }
     },
     venue: {

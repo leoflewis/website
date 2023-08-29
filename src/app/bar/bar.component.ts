@@ -28,8 +28,6 @@ export class BarComponent implements OnDestroy{
   }
 
   ngOnInit(): void {
-    this.chartid = "Chart" + Math.floor(Math.random() * 101).toString();
-    console.log(this.chartid);
     this.createChart();
     this.id = this.route;
   }
