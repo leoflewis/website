@@ -31,6 +31,7 @@ import { HistoricGamesComponent } from './historic-games/historic-games.componen
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TeamsComponent } from './teams/teams.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 @NgModule({
@@ -45,7 +46,6 @@ import { TeamsComponent } from './teams/teams.component';
     GamesComponent,
     HistoricGamesComponent,
     TeamsComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -69,7 +69,8 @@ import { TeamsComponent } from './teams/teams.component';
     MatListModule,
     MatSortModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    FlexLayoutModule
   ],
   exports: [
     MatSortModule

@@ -36,10 +36,30 @@ export interface NHLTeam{
     shortName: string,
     officialSiteUrl: string,
     franchiseId: number,
-    active: boolean
+    active: boolean,
+    roster?: Roster
 }
 
 export interface NHLTeamMessage{
     copyright: string,
     teams: NHLTeam[]
+}
+
+export interface Roster{
+    roster: RosterItem[]
+}
+
+export interface RosterItem{
+    person: {
+        id: number,
+        fullName: string,
+        link: string
+    },
+    jerseyNumber: number,
+    position: {
+        code: string,
+        name: string,
+        type: string,
+        abbreviation: string
+    }
 }

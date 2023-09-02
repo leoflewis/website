@@ -8,5 +8,36 @@
                 </mat-option>
             </mat-select>
         </mat-form-field> 
+        <mat-form-field>
+            <mat-label>Year</mat-label>
+            <mat-select  (selectionChange)="onChange()" formControlName="year">
+              <mat-option [value]="20222023">2022-2023</mat-option>
+              <mat-option [value]="20232024">2023-2024</mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
+    <div *ngIf="form.value.teamObj" >
+        <div>
+            <img src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{form.value.teamObj}}.svg">
+        </div>
+        <br>
+        <div>
+            <app-rink></app-rink>
+        </div>
+        <br>
+        <div *ngIf="roster" style="align-self: center; align-items: center;" >
+            <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
+                <div fxFlex="25%"  *ngFor="let player of roster">
+                    <mat-card >
+                        <h2>{{player.person.fullName}}</h2>
+                        <h3>{{player.position.abbreviation}}</h3>
+                        <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{player.person.id}}.jpg">
+                        <br>
+                    </mat-card>
+                    <br>
+                </div>
+            </div>
+        </div>
+        
+    </div>      
 </div>
