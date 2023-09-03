@@ -24,6 +24,7 @@ export class TeamsComponent {
   shots: Shot[];
   startStr: string;
   endStr: string;
+  datesSelected: boolean = false;
   
   constructor(private http: HttpClient){
     const currentYear = new Date().getFullYear();
@@ -64,9 +65,12 @@ export class TeamsComponent {
 
   onDateChange(){
     if(this.form.value.start != null && this.form.value.end != null){
+      this.datesSelected = true;
       this.startStr = this.form.value.start.getFullYear() + "-" + (this.form.value.start.getMonth() + 1) + "-" + this.form.value.start.getDate()
       this.endStr = this.form.value.end.getFullYear() + "-" + (this.form.value.end.getMonth() + 1) + "-" + this.form.value.end.getDate()
-
+      this.getShotsbyDate(this.form.value.teamObj, this.form.value.year, this.startStr, this.endStr).subscribe(data => {
+        this.shots = data.message.data.shots;
+      });
     }
   }
 
