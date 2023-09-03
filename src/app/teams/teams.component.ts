@@ -13,7 +13,7 @@ export class TeamsComponent {
   form = new FormGroup({
     teamObj: new FormControl('30'),
     year: new FormControl('20222023'),
-    type: new FormControl('Taken'),
+    type: new FormControl("1"),
     start: new FormControl<Date | null>(new Date(2022, 9, 15)),
     end: new FormControl<Date | null>(null),
   });
@@ -25,6 +25,7 @@ export class TeamsComponent {
   startStr: string;
   endStr: string;
   datesSelected: boolean = false;
+  taken: string = "taken";
   
   constructor(private http: HttpClient){
     const currentYear = new Date().getFullYear();
@@ -39,7 +40,7 @@ export class TeamsComponent {
     this.getRoster(this.form.value.teamObj, this.form.value.year)?.subscribe(team => {
       this.roster = team.teams[0].roster?.roster;
     })
-    this.getShots(this.form.value.teamObj, this.form.value.year).subscribe(data => {
+    this.getShots(this.form.value.teamObj, this.form.value.year, "taken").subscribe(data => {
       this.shots = data.message.data.shots;
     });
   }
@@ -55,20 +56,34 @@ export class TeamsComponent {
       this.maxDate = new Date(2023, 6, 1);
       this.form.value.start = new Date(2022, 9, 10);
     }
+    if(this.form.value.type == "1"){
+      this.taken = "taken"
+    }
+    if(this.form.value.type == "0"){
+      this.taken = "conceded"
+    }
     this.getRoster(this.form.value.teamObj, this.form.value.year)?.subscribe(team => {
       this.roster = team.teams[0].roster?.roster;
     });
-    this.getShots(this.form.value.teamObj, this.form.value.year).subscribe(data => {
+    this.getShots(this.form.value.teamObj, this.form.value.year, this.taken).subscribe(data => {
       this.shots = data.message.data.shots;
     });
+    if(this.datesSelected){
+      this.getShotsbyDate(this.form.value.teamObj, this.form.value.year, this.startStr, this.endStr, this.taken).subscribe(data => {
+        this.shots = data.message.data.shots;
+      });
+    }
   }
 
   onDateChange(){
+    if(this.form.value.type == "0"){
+      this.taken = "conceded"
+    }
     if(this.form.value.start != null && this.form.value.end != null){
       this.datesSelected = true;
       this.startStr = this.form.value.start.getFullYear() + "-" + (this.form.value.start.getMonth() + 1) + "-" + this.form.value.start.getDate()
       this.endStr = this.form.value.end.getFullYear() + "-" + (this.form.value.end.getMonth() + 1) + "-" + this.form.value.end.getDate()
-      this.getShotsbyDate(this.form.value.teamObj, this.form.value.year, this.startStr, this.endStr).subscribe(data => {
+      this.getShotsbyDate(this.form.value.teamObj, this.form.value.year, this.startStr, this.endStr, this.taken).subscribe(data => {
         this.shots = data.message.data.shots;
       });
     }
@@ -87,12 +102,12 @@ export class TeamsComponent {
     }
   }
 
-  getShots(id: string | undefined | null, season: string | undefined | null){
-    return this.http.get<TeamMessage>("https://hockey-stats-data.azurewebsites.net/team?team=" + id + "&season=" + season);
+  getShots(id: string | undefined | null, season: string | undefined | null, taken: string){
+    return this.http.get<TeamMessage>("https://hockey-stats-data.azurewebsites.net/team?team=" + id + "&season=" + season + "&taken=" + taken);
   }
 
 
-  getShotsbyDate(id: string | undefined | null, season: string | undefined | null, start: string | undefined | null, end: string | undefined | null){
-    return this.http.get<TeamMessage>("https://hockey-stats-data.azurewebsites.net/team?team=" + id + "&season=" + season + "&start=" + start + "&end=" + end);
+  getShotsbyDate(id: string | undefined | null, season: string | undefined | null, start: string | undefined | null, end: string | undefined | null, taken: string){
+    return this.http.get<TeamMessage>("https://hockey-stats-data.azurewebsites.net/team?team=" + id + "&season=" + season + "&start=" + start + "&end=" + end + "&taken=" + taken);
   }
 }
