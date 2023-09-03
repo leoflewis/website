@@ -1,3 +1,5 @@
+import { Shot } from "./shot"
+
 export interface NHLTeam{
     id: number,
     name: string,
@@ -61,5 +63,13 @@ export interface RosterItem{
         name: string,
         type: string,
         abbreviation: string
+    }
+}
+
+export interface TeamMessage{
+    message: {
+        data: {
+            shots: Shot[]
+        }
     }
 }

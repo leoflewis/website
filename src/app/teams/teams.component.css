@@ -1,5 +1,9 @@
-form, mat-form-field{
+.full-width{
     width: 100%;
+}
+
+.date{
+    justify-self: right;
 }
 
 img{
@@ -28,6 +32,7 @@ mat-card {
 
 h2, h3, p{
     color: black;
+    text-align: center;
 }
 
 .container{

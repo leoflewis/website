@@ -1,6 +1,6 @@
-<div>
+<div class="form-container">
     <form [formGroup]="form">
-        <mat-form-field >
+        <mat-form-field class="full-width">
             <mat-label>Team</mat-label>
             <mat-select (selectionChange)="onChange()" formControlName="teamObj">
                 <mat-option [value]="team.id" *ngFor="let team of teams">
@@ -8,22 +8,45 @@
                 </mat-option>
             </mat-select>
         </mat-form-field> 
-        <mat-form-field>
+        <mat-form-field class="full-width">
             <mat-label>Year</mat-label>
             <mat-select  (selectionChange)="onChange()" formControlName="year">
               <mat-option [value]="20222023">2022-2023</mat-option>
               <mat-option [value]="20232024">2023-2024</mat-option>
             </mat-select>
         </mat-form-field>
+        <p>Select shots taken or conceded. Select date from within year.</p>
+        <mat-form-field>
+            <mat-label>Shot type</mat-label>
+            <mat-select  (selectionChange)="onChange()" formControlName="type">
+              <mat-option [value]="1">Taken</mat-option>
+              <mat-option [value]="0">Conceded</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="date">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [formGroup]="form" [rangePicker]="picker" [min]="minDate" [max]="maxDate">
+              <input class="date" matStartDate formControlName="start" placeholder="Start date"  >
+              <input class="date" matEndDate formControlName="end" placeholder="End date" (dateChange)="onDateChange()">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-error *ngIf="form.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="form.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
     </form>
     <div *ngIf="form.value.teamObj" >
         <div>
             <img src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{form.value.teamObj}}.svg">
         </div>
         <br>
-        <div>
-            <app-rink></app-rink>
+        <div *ngIf="form.value.year" >
+            <h3>{{form.value.year}}</h3>
         </div>
+        <div>
+            <app-rink [shots]="this.shots"></app-rink>
+        </div>        
         <br>
         <div *ngIf="roster" style="align-self: center; align-items: center;" >
             <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
