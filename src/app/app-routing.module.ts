@@ -8,6 +8,7 @@ import { SkatersTableComponent } from './skaters-table/skaters-table.component';
 import { GamesComponent } from './games/games.component';
 import { HistoricGamesComponent } from './historic-games/historic-games.component';
 import { TeamsComponent } from './teams/teams.component';
+import { CompareTeamsComponent } from './compare-teams/compare-teams.component';
 
 const routes: Routes = [
   {path: "players", component: PlayerLandingComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: "skaters", component: SkatersTableComponent},
   {path: "todaygames", component: GamesComponent,},
   {path: "historic", component: HistoricGamesComponent },
-  {path: "teams", component: TeamsComponent}
+  {path: "teams", component: TeamsComponent},
+  {path: "compare-teams", component: CompareTeamsComponent}
 ];
 
 @NgModule({

@@ -32,6 +32,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TeamsComponent } from './teams/teams.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { CompareTeamsComponent } from './compare-teams/compare-teams.component';
+import { ScatterComponent } from './scatter/scatter.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     GamesComponent,
     HistoricGamesComponent,
     TeamsComponent,
+    CompareTeamsComponent,
+    ScatterComponent,
   ],
   imports: [
     BrowserModule,

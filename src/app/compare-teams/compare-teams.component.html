@@ -1,0 +1,21 @@
+<div>
+    <form [formGroup]="form" class="full-width">
+        <mat-form-field class="full-width">
+            <mat-label>Year</mat-label>
+            <mat-select formControlName="year">
+              <mat-option [value]="20222023">2022-2023</mat-option>
+              <mat-option [value]="20232024">2023-2024</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width"  >
+            <mat-label>Stat</mat-label>
+            <mat-select formControlName="stat">
+              <mat-option [value]="0">xG</mat-option>
+              <mat-option [value]="1">Fenwick</mat-option>
+              <mat-option [value]="2">Shots</mat-option>
+              <mat-option [value]="3">Fenwick</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <app-scatter></app-scatter>
+</div>
