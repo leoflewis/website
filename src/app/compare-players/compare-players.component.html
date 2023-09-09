@@ -4,7 +4,6 @@
         <mat-select formControlName="year" (selectionChange)="onSeasonChange()" >
           <mat-option [value]="'20222023'">2022-2023</mat-option>
           <mat-option [value]="'20222023'">2023-2024</mat-option>
-          <mat-option [value]="'20222023'">All Available Data</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field>
@@ -22,3 +21,7 @@
         </mat-autocomplete>
     </mat-form-field>
 </form>
+
+<h2>Player data is reprsented as a percentile rank of all players across a season.</h2>
+
+<app-radar *ngIf="this.player2Data && this.player1Data" [player1Data]="this.player1Data" [player2Data]="this.player2Data"></app-radar>

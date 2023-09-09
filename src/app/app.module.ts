@@ -35,6 +35,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { CompareTeamsComponent } from './compare-teams/compare-teams.component';
 import { ScatterComponent } from './scatter/scatter.component';
 import { ComparePlayersComponent } from './compare-players/compare-players.component';
+import { RadarComponent } from './radar/radar.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { ComparePlayersComponent } from './compare-players/compare-players.compo
     CompareTeamsComponent,
     ScatterComponent,
     ComparePlayersComponent,
+    RadarComponent,
   ],
   imports: [
     BrowserModule,

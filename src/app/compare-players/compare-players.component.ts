@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, startWith } from 'rxjs';
-import { SkaterPercentile } from '../models/percentile';
+import { SkaterPercentile, SkaterPercentileData } from '../models/percentile';
 
 @Component({
   selector: 'app-compare-players',
@@ -13,8 +13,8 @@ import { SkaterPercentile } from '../models/percentile';
 })
 export class ComparePlayersComponent {
   myGroup = new FormGroup({});
-  player1 = new FormControl<string | Player | null>(null);
-  player2 = new FormControl<string | Player | null>(null);
+  player1 = new FormControl<Player | null>(null);
+  player2 = new FormControl<Player | null>(null);
   seasonControl = new FormControl<string>("20222023");
 
   options1: Player[] = [];
@@ -22,8 +22,8 @@ export class ComparePlayersComponent {
   renderPlayer: boolean | undefined;
   filteredOptions1: Observable<Player[]>;
   filteredOptions2: Observable<Player[]>;
-  player1Object: Player;
-  player2Object: Player;
+  player1Data: SkaterPercentileData;
+  player2Data: SkaterPercentileData;
   season: string | null;
   
   constructor(private http: HttpClient) { 
@@ -61,13 +61,19 @@ export class ComparePlayersComponent {
   
   onSeasonChange(){
     this.season = this.seasonControl.value;
-    console.log(this.season);
   }
 
   onSelect(e: Player){
     this.renderPlayer = false;
     if (this.player1.value != null && this.player2.value != null){
-      console.log("get player for " + this.season);
+      this.renderPlayer = true;
+      console.log(this.player2.value);
+      this.getPlayerPercentile(this.player1.value.PlayerId).subscribe(data => {
+        this.player1Data = data.message.data[0];
+      });
+      this.getPlayerPercentile(this.player2.value.PlayerId).subscribe(data => {
+        this.player2Data = data.message.data[0];
+      });
     }
   }
 
@@ -75,8 +81,8 @@ export class ComparePlayersComponent {
     return this.http.get<PlayersResponse>("https://hockey-stats-data.azurewebsites.net/players");
   }
 
-  getPlayerPercentile(id: string){
-    return this.http.get<SkaterPercentile>("https://hockey-stats-data.azurewebsites.net/skaters-percent?id=" + this.player2.value + "&season=" + this.season);
+  getPlayerPercentile(id: number){
+    return this.http.get<SkaterPercentile>("https://hockey-stats-data.azurewebsites.net/skaters-percent?id=" + id + "&season=" + this.season);
   }
 
   displayFn(user: Player): string {
