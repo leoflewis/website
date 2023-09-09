@@ -1,6 +1,19 @@
 mat-form-field {
     width: 100%;
 }
+
 h2{
     text-align: center;
 }
+
+.headshot{
+    height: 100%;
+    width: 100%;
+}
+.column {
+    float: inherit;
+    flex: 100%;
+    padding: 10px;
+    text-align: center;
+}
+

@@ -23,5 +23,18 @@
 </form>
 
 <h2>Player data is reprsented as a percentile rank of all players across a season.</h2>
-
-<app-radar *ngIf="this.player2Data && this.player1Data" [player1Data]="this.player1Data" [player2Data]="this.player2Data"></app-radar>
+<div *ngIf="this.player2Data && this.player1Data">
+    <mat-card>
+        <div class="row">
+            <div class="column"style="float: left;">
+                <h3 style="color: rgb(255, 99, 132);" >{{this.player1Data.PlayerName}}</h3>
+                <img class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{this.player1Data.playerid}}.jpg">
+             </div>
+             <div class="column" style="float: right;">
+                <h3 style="color: rgb(54, 162, 235);">{{this.player2Data.PlayerName}}</h3>
+                <img class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{this.player2Data.playerid}}.jpg">
+             </div>
+        </div>
+    </mat-card>
+    <app-radar  [player1Data]="this.player1Data" [player2Data]="this.player2Data"></app-radar>
+</div>
