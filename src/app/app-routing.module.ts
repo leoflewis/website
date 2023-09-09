@@ -9,6 +9,7 @@ import { GamesComponent } from './games/games.component';
 import { HistoricGamesComponent } from './historic-games/historic-games.component';
 import { TeamsComponent } from './teams/teams.component';
 import { CompareTeamsComponent } from './compare-teams/compare-teams.component';
+import { ComparePlayersComponent } from './compare-players/compare-players.component';
 
 const routes: Routes = [
   {path: "players", component: PlayerLandingComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: "todaygames", component: GamesComponent,},
   {path: "historic", component: HistoricGamesComponent },
   {path: "teams", component: TeamsComponent},
-  {path: "compare-teams", component: CompareTeamsComponent}
+  {path: "compare-teams", component: CompareTeamsComponent},
+  {path: "compare-players", component: ComparePlayersComponent},
 ];
 
 @NgModule({

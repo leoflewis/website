@@ -7,30 +7,24 @@ import { Chart } from 'chart.js';
   styleUrls: ['./scatter.component.css']
 })
 export class ScatterComponent {
-
   public graph: any;
-  public chartid!: string;
+  
+
+
   ngOnInit(): void {
     this.createChart();
-    this.chartid = "Chart2";
   }
   
   data = {
+    labels: ["1", "2", "3", "4"],
     datasets: [{
       label: 'Teams',
-      data: [{
-        x: -10,
-        y: 0
-      }, {
-        x: 0,
-        y: 10
-      }, {
-        x: 10,
-        y: 5
-      }, {
-        x: 0.5,
-        y: 5.5
-      }],
+      data: [
+        {x: 2, y: 2,}, 
+        {x: -2, y: 2}, 
+        {x: -2,y: -2}, 
+        {x: 2,y: -2,}
+      ],
       backgroundColor: 'blue'
     }],
   };

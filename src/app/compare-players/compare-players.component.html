@@ -1,0 +1,24 @@
+<form class="example-form" [formGroup]="myGroup">
+    <mat-form-field >
+        <mat-label>Year</mat-label>
+        <mat-select formControlName="year" (selectionChange)="onSeasonChange()" >
+          <mat-option [value]="'20222023'">2022-2023</mat-option>
+          <mat-option [value]="'20222023'">2023-2024</mat-option>
+          <mat-option [value]="'20222023'">All Available Data</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Player 1</mat-label>
+      <input #playerInput type="text" matInput placeholder="Search for player" [formControl]="player1"  [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event.option.value)">
+        <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">{{option.PlayerName}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Player 2</mat-label>
+        <input #playerInput type="text" matInput placeholder="Search for player" [formControl]="player2"  [matAutocomplete]="autoPlayer2">
+        <mat-autocomplete #autoPlayer2="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event.option.value)">
+          <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option">{{option.PlayerName}}</mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

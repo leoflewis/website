@@ -40,7 +40,7 @@ export class TeamsComponent {
     this.getRoster(this.form.value.teamObj, this.form.value.year)?.subscribe(team => {
       this.roster = team.teams[0].roster?.roster;
     })
-    this.getShots(this.form.value.teamObj, this.form.value.year, "taken").subscribe(data => {
+    this.getShots(this.form.value.teamObj, this.form.value.year, this.taken).subscribe(data => {
       this.shots = data.message.data.shots;
     });
   }
