@@ -73,3 +73,15 @@ export interface TeamMessage{
         }
     }
 }
+
+export interface TeamStatsMessage{
+    message: {
+        data: TeamStatData[]
+    }
+}
+
+export interface TeamStatData{
+    x: number, 
+    y: number,
+    name: string
+}

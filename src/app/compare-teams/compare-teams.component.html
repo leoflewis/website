@@ -11,11 +11,11 @@
             <mat-label>Stat</mat-label>
             <mat-select formControlName="stat">
               <mat-option [value]="0">xG</mat-option>
-              <mat-option [value]="1">Fenwick</mat-option>
+              <mat-option [value]="1">Goals</mat-option>
               <mat-option [value]="2">Shots</mat-option>
               <mat-option [value]="3">Fenwick</mat-option>
             </mat-select>
         </mat-form-field>
     </form>
-    <app-scatter></app-scatter>
+    <app-scatter *ngIf="this.data" [inputData]="this.data"></app-scatter>
 </div>
