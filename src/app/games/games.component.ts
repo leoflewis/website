@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component  } from '@angular/core';
-import { GameMessage, Games } from '../models/game';
+import { GameMessage, Game } from '../models/game';
 import { formatDate } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-games',
@@ -9,8 +10,8 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./games.component.css']
 })
 export class GamesComponent {
-  game: Games;
-  games: Games[];
+  game: Game;
+  games: Game[];
 
   constructor(private http: HttpClient){
     this.games = [];
@@ -18,12 +19,7 @@ export class GamesComponent {
 
   ngOnInit(){
     this.getGames().subscribe(data => {
-      this.games = data.dates[0].games;
-      this.games.forEach(game => {
-        var y = Math.random();
-        game.teams.away.prediction = y > .5 ? "favored": "not-favored";
-        game.teams.home.prediction = y < .5 ? "favored": "not-favored";
-      });
+      this.games = data.gameWeek[0].games;
     });
   }
 
@@ -31,11 +27,13 @@ export class GamesComponent {
     return formatDate(date, "dd/MM/yyyy", "en-US")
   }
 
-  onClick(e: Games){
+  onClick(e: Game){
     this.game = e;
   }
 
   getGames(){
-    return this.http.get<GameMessage>("https://statsapi.web.nhl.com/api/v1/schedule?date=2023-10-10"); 
+    return this.http.get<GameMessage>("https://api-web.nhle.com/v1/schedule/2023-10-10", {
+      headers: new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', 'http://localhost:4200')
+    }); 
   }
 }

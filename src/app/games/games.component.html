@@ -3,26 +3,24 @@
 <mat-card *ngFor="let game of games">
     <div class="row">
         <div class="column">
-            <div class="{{game.teams.home.prediction}}">
-                <img mat-card-image  src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{game.teams.home.team.id}}.svg">
-                <h1>{{game.teams.home.score}} </h1>
-                <p>{{game.teams.home.leagueRecord.wins}} - {{game.teams.home.leagueRecord.losses}} - {{game.teams.home.leagueRecord.ot}}</p>
+            <div class="favored">
+                <img mat-card-image  src="https://assets.nhle.com/logos/nhl/svg/{{game.homeTeam.abbrev}}_light.svg">
+                <h1>{{game.homeTeam.score}} </h1>
                 <p>Predicted win probability:</p>
                 <h1>40%</h1>
             </div>
         </div>
         <div class="column">
-            <div class="{{game.teams.away.prediction}}">
-                <img mat-card-image src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{game.teams.away.team.id}}.svg">
-                <h1>{{game.teams.away.score}}</h1>
-                <p>{{game.teams.away.leagueRecord.wins}} - {{game.teams.away.leagueRecord.losses}} - {{game.teams.away.leagueRecord.ot}}</p>
+            <div class="not-favored">
+                <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{game.awayTeam.abbrev}}_light.svg">
+                <h1>{{game.awayTeam.score}}</h1>
                 <p>Predicted win probability:</p>
                 <h1>60%</h1>
             </div>
         </div>
     </div>
-    <p>{{game.status.detailedState}} {{ game.gameDate | date :'short'}}</p>
-    <p>{{game.venue.name}}</p>
+    <p>{{game.gameState}} {{ game.startTimeUTC | date :'short'}}</p>
+    <p>{{game.venue}}</p>
     <button mat-icon-button matSuffix (click)="onClick(game)">
         <mat-icon>forward icon</mat-icon>
     </button>
@@ -31,6 +29,6 @@
 
 <div>
     <ng-container *ngIf="game"> 
-        <h3>{{this.game.gamePk}}</h3>
+        <h3>{{this.game.id}}</h3>
     </ng-container> 
 </div>
