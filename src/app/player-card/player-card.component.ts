@@ -37,7 +37,7 @@ export class PlayerCardComponent {
     if (this.id != undefined){
       this.getPlayerBio(this.id).subscribe(data => {
         this.playerBio = data;
-        if(this.playerBio.people[0].primaryPosition.name != "Goalie"){
+        if(this.playerBio.position != "G"){
           this.label = "Season Totals";
           this.labels = ["Games", "EV TOI","Points", "Goals", "Assists", "Shots", "Sh%", "Blocks", "GWG", "Hits", "OTG", "PIMs", "+/-", "PP G", "PP P", "PP TOI", "SH G", "SH P", "SH TOI", "Shifts"];
           this.getPlayerData(this.id).subscribe(data => {
@@ -90,7 +90,7 @@ export class PlayerCardComponent {
   }
 
   getPlayerBio(id: number){
-    return this.http.get<PlayerBio>("https://statsapi.web.nhl.com/api/v1/people/" + id + "/");
+    return this.http.get<PlayerBio>("https://api-web.nhle.com/v1/player/" + id + "/landing");
   }
 
   getPlayerData(id: number){

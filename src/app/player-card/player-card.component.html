@@ -2,25 +2,26 @@
     <div class="main-div">
         <mat-card class="example-card" >
             <mat-card-header>
-            <div mat-card-avatar class="example-header-image" *ngIf="playerBio.people[0].active">
-                <img mat-card-image src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{playerBio.people[0].currentTeam.id}}.svg">
+            <div mat-card-avatar class="example-header-image" *ngIf="playerBio.currentTeamId">
+                <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{playerBio.currentTeamAbbrev}}_light.svg">
             </div>
-            <mat-card-title>{{playerBio.people[0].fullName}}</mat-card-title>
-            <mat-card-subtitle>{{playerBio.people[0].primaryPosition.name}}</mat-card-subtitle>
+            <mat-card-title>{{playerBio.firstName}} {{playerBio.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{playerBio.position}}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{id}}.jpg">
+            <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{playerBio.playerId}}.jpg">
             <mat-card-content>
-                <p>DOB: {{playerBio.people[0].birthDate}} </p>
-                <p *ngIf="playerBio.people[0].active">{{playerBio.people[0].currentAge}} years old </p>            
-                <p>{{playerBio.people[0].birthCity}} {{playerBio.people[0].birthStateProvince}} {{playerBio.people[0].birthCountry}}</p>
-                <p>Nationality: {{playerBio.people[0].nationality}}</p>
-                <p>{{playerBio.people[0].height}} {{playerBio.people[0].weight}} lbs</p>
+                <p>DOB: {{playerBio.birthDate}} </p>       
+                <p>{{playerBio.birthCity}} {{playerBio.birthCountry}}</p>
+                <p>{{playerBio.heightInInches}} in {{playerBio.weightInPounds}} lbs</p>
+                <p>Drafted: {{playerBio.draftDetails.year}} Round: {{playerBio.draftDetails.round}}</p>
+                <p>Pick: {{playerBio.draftDetails.pickInRound}} Overall: {{playerBio.draftDetails.overallPick}}</p>
+                <p>By: {{playerBio.draftDetails.teamAbbrev}}</p>
             </mat-card-content>
         </mat-card>
     </div>
     <app-bar [label]="this.label" [labels]="this.labels" [dataValues]="this.values" [colors]="this.colors"></app-bar>
-    <P *ngIf="playerBio.people[0].primaryPosition.name != 'Goalie'" >Standard deviations above average.</P>
-    <P *ngIf="playerBio.people[0].primaryPosition.name == 'Goalie'" >Realized goals compared to expected.</P>
+    <P *ngIf="playerBio.position != 'G'" >Standard deviations above average.</P>
+    <P *ngIf="playerBio.position == 'G'" >Realized goals compared to expected.</P>
     <br>
     <br>
     <app-rink [shots]="this.shots"></app-rink>
