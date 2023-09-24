@@ -35,7 +35,7 @@ export class TeamsComponent {
 
   ngOnInit(){
     this.getTeams().subscribe(teams => {
-      this.teams = teams.teams;
+      this.teams = teams.message.data;
     });
     this.getRoster(this.form.value.teamObj, this.form.value.year)?.subscribe(team => {
       this.roster = team;
@@ -92,7 +92,7 @@ export class TeamsComponent {
 
   // This might have to get updated to the new endpoint. but for now we will leave it.
   getTeams(){
-    return this.http.get<NHLTeamMessage>("https://statsapi.web.nhl.com/api/v1/teams");
+    return this.http.get<NHLTeamMessage>("https://hockey-stats-data.azurewebsites.net/teams");
   }
 
   getRoster(id: string | undefined | null, year: string | undefined | null){

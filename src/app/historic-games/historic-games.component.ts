@@ -22,7 +22,7 @@ export class HistoricGamesComponent {
 
   ngOnInit(){
     this.getTeams().subscribe(teams => {
-      this.teams = teams.teams;
+      this.teams = teams.message.data;
     });
   }
 
@@ -30,9 +30,10 @@ export class HistoricGamesComponent {
     console.log(this.form.value.date);
     console.log(this.form.value.teamObj);
   }
-
+  
+  // This might have to get updated to the new endpoint. but for now we will leave it.
   getTeams(){
-    return this.http.get<NHLTeamMessage>("https://statsapi.web.nhl.com/api/v1/teams");
+    return this.http.get<NHLTeamMessage>("https://hockey-stats-data.azurewebsites.net/teams");
   }
 
 }

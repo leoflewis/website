@@ -3,8 +3,8 @@
         <mat-form-field>
             <mat-label>Search by team</mat-label>
             <mat-select formControlName="teamObj">
-                <mat-option [value]="team.id" *ngFor="let team of teams">
-                    {{team.name}}
+                <mat-option [value]="team.TeamId" *ngFor="let team of teams">
+                    {{team.TeamName}}
                 </mat-option>
             </mat-select>
         </mat-form-field> 

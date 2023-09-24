@@ -3,8 +3,8 @@
         <mat-form-field class="full-width">
             <mat-label>Team</mat-label>
             <mat-select (selectionChange)="onChange()" formControlName="teamObj">
-                <mat-option [value]="team.abbreviation" *ngFor="let team of teams">
-                    {{team.name}}
+                <mat-option [value]="team.TeamName" *ngFor="let team of teams">
+                    {{team.TeamName}}
                 </mat-option>
             </mat-select>
         </mat-form-field> 

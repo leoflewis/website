@@ -24,7 +24,6 @@ export class CompareTeamsComponent {
   ngOnInit(){
     this.getTeamStats().subscribe(data =>{
       this.data = data.message.data;
-      console.log(this.data);
     });
   }
 
