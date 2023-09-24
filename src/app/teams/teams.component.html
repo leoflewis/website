@@ -3,7 +3,7 @@
         <mat-form-field class="full-width">
             <mat-label>Team</mat-label>
             <mat-select (selectionChange)="onChange()" formControlName="teamObj">
-                <mat-option [value]="team.id" *ngFor="let team of teams">
+                <mat-option [value]="team.abbreviation" *ngFor="let team of teams">
                     {{team.name}}
                 </mat-option>
             </mat-select>
@@ -38,7 +38,7 @@
     </form>
     <div *ngIf="form.value.teamObj" >
         <div>
-            <img src="https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/{{form.value.teamObj}}.svg">
+            <img src="https://assets.nhle.com/logos/nhl/svg/{{form.value.teamObj}}_light.svg"> 
         </div>
         <br>
         <div *ngIf="form.value.year" >
@@ -50,11 +50,37 @@
         <br>
         <div *ngIf="roster" style="align-self: center; align-items: center;" >
             <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
-                <div fxFlex="25%"  *ngFor="let player of roster">
+                <div fxFlex="25%"  *ngFor="let player of roster.forwards">
                     <mat-card >
-                        <h2>{{player.person.fullName}}</h2>
-                        <h3>{{player.position.abbreviation}}</h3>
-                        <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{player.person.id}}.jpg">
+                        <h2>{{player.firstName}} {{player.lastName}}</h2>
+                        <h3>{{player.positionCode}}</h3>
+                        <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{player.id}}.jpg">
+                        <br>
+                    </mat-card>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="roster" style="align-self: center; align-items: center;" >
+            <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
+                <div fxFlex="25%"  *ngFor="let player of roster.defensemen">
+                    <mat-card >
+                        <h2>{{player.firstName}} {{player.lastName}}</h2>
+                        <h3>{{player.positionCode}}</h3>
+                        <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{player.id}}.jpg">
+                        <br>
+                    </mat-card>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="roster" style="align-self: center; align-items: center;" >
+            <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
+                <div fxFlex="25%"  *ngFor="let player of roster.goalies">
+                    <mat-card >
+                        <h2>{{player.firstName}} {{player.lastName}}</h2>
+                        <h3>{{player.positionCode}}</h3>
+                        <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{player.id}}.jpg">
                         <br>
                     </mat-card>
                     <br>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { NHLTeam, NHLTeamMessage, RosterItem, TeamMessage } from '../models/team';
+import { NHLTeam, NHLTeamMessage, Roster, RosterItem, TeamMessage } from '../models/team';
 import { Shot } from '../models/shot';
 
 @Component({
@@ -11,7 +11,7 @@ import { Shot } from '../models/shot';
 })
 export class TeamsComponent {
   form = new FormGroup({
-    teamObj: new FormControl('30'),
+    teamObj: new FormControl('MIN'),
     year: new FormControl('20222023'),
     type: new FormControl("1"),
     start: new FormControl<Date | null>(new Date(2022, 9, 15)),
@@ -20,7 +20,7 @@ export class TeamsComponent {
   minDate: Date;
   maxDate: Date;
   teams: NHLTeam[];
-  roster: RosterItem[] | undefined;
+  roster: Roster | undefined;
   shots: Shot[];
   startStr: string;
   endStr: string;
@@ -38,7 +38,7 @@ export class TeamsComponent {
       this.teams = teams.teams;
     });
     this.getRoster(this.form.value.teamObj, this.form.value.year)?.subscribe(team => {
-      this.roster = team.teams[0].roster?.roster;
+      this.roster = team;
     })
     this.getShots(this.form.value.teamObj, this.form.value.year, this.taken).subscribe(data => {
       this.shots = data.message.data.shots;
@@ -63,7 +63,7 @@ export class TeamsComponent {
       this.taken = "conceded"
     }
     this.getRoster(this.form.value.teamObj, this.form.value.year)?.subscribe(team => {
-      this.roster = team.teams[0].roster?.roster;
+      this.roster = team;
     });
     this.getShots(this.form.value.teamObj, this.form.value.year, this.taken).subscribe(data => {
       this.shots = data.message.data.shots;
@@ -89,13 +89,15 @@ export class TeamsComponent {
     }
   }
 
+
+  // This might have to get updated to the new endpoint. but for now we will leave it.
   getTeams(){
     return this.http.get<NHLTeamMessage>("https://statsapi.web.nhl.com/api/v1/teams");
   }
 
   getRoster(id: string | undefined | null, year: string | undefined | null){
     if(id != null && id != undefined){
-      return this.http.get<NHLTeamMessage>("https://statsapi.web.nhl.com/api/v1/teams/" + id + "?expand=team.roster&season=" + year)
+      return this.http.get<Roster>("https://api-web.nhle.com/v1/roster/" + id + "/" + year)
     }
     else{
       return

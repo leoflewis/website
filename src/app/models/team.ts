@@ -48,22 +48,27 @@ export interface NHLTeamMessage{
 }
 
 export interface Roster{
-    roster: RosterItem[]
+    forwards: RosterItem[],
+    defensemen: RosterItem[],
+    goalies: RosterItem[]
 }
 
 export interface RosterItem{
-    person: {
-        id: number,
-        fullName: string,
-        link: string
-    },
-    jerseyNumber: number,
-    position: {
-        code: string,
-        name: string,
-        type: string,
-        abbreviation: string
-    }
+    id: number,
+    headshot: string,
+    firstName: string,
+    lastName: string,
+    sweaterNumber: number,
+    positionCode: string,
+    shootsCatches: string,
+    heightInInches: number,
+    weightInPounds: number,
+    heightInCentimeters: number,
+    weightInKilograms: number,
+    birthDate: string,
+    birthCity: string,
+    birthCountry: string,
+    birthStateProvince: string
 }
 
 export interface TeamMessage{
