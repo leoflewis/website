@@ -1,84 +1,102 @@
 export interface GameMessage {
-    nextStartDate: string,
-    previousStartDate: string,
-    gameWeek: GameWeek[],
-    preSeasonStartDate: string,
-    regularSeasonStartDate: string,
-    regularSeasonEndDate: string,
-    playoffEndDate: string,
-    numberOfGames: number
-}
-
-export interface GameWeek{
-    date: string,
-    dayAbbrev: string,
-    numberOfGames: number,
+    prevDate: string
+    currentDate: string
+    nextDate: string
+    gameWeek: GameWeek[]
+    oddsPartners: OddsPartner[]
     games: Game[]
-}
-
-export interface Game{
-    id: number,
-    season: number,
-    gameType: number,
-    venue: string,
-    neutralSite: boolean,
-    startTimeUTC: Date,
-    easternUTCOffset: string,
-    venueUTCOffset: string,
-    venueTimezone: string,
-    gameState: string,
-    gameScheduleState: string,
-    tvBroadcasts: [
-        {
-            id: number,
-            market: string,
-            countryCode: string,
-            network: string
-        },
-        {
-            id: number,
-            market: string,
-            countryCode: string,
-            network: string
-        },
-        {
-            id: number,
-            market: string,
-            countryCode: string,
-            network: string
-        }
-    ],
-    awayTeam: {
-        id: number,
-        city: string,
-        abbrev: string,
-        logo: string,
-        awaySplitSquad: true,
-        score?: number
-        prediction?:string
-    },
-    homeTeam: {
-        id: number,
-        city: string,
-        abbrev: string,
-        logo: string,
-        homeSplitSquad: true,
-        score?: number
-        prediction?:string
-    },
-    gameOutcome: {
-        lastPeriodType: string
-    },
-    winningGoalie?: {
-        playerId: number,
-        firstInitial: string,
-        lastName: string
-    },
-    winningGoalScorer?: {
-        playerId: number,
-        firstInitial: string,
-        lastName: string
-    },
-    specialEvent?: string,
+  }
+  
+  export interface GameWeek {
+    date: string
+    dayAbbrev: string
+    numberOfGames: number
+  }
+  
+  export interface OddsPartner {
+    partnerId: number
+    country: string
+    name: string
+    url: string
+    bgColor: string
+    textColor: string
+    accentColor: string
+  }
+  
+  export interface Game {
+    id: number
+    season: number
+    gameType: number
+    gameDate: string
+    venue: string
+    startTimeUTC: string
+    easternUTCOffset: string
+    venueUTCOffset: string
+    tvBroadcasts: TvBroadcast[]
+    gameState: string
+    gameScheduleState: string
+    awayTeam: AwayTeam
+    homeTeam: HomeTeam
     gameCenterLink: string
-}
+    clock?: Clock
+    period?: number
+    situationCode?: string
+    goals?: Goal[]
+    ticketsLink?: string
+    teamLeaders?: TeamLeader[]
+  }
+  
+  export interface TvBroadcast {
+    id: number
+    market: string
+    countryCode: string
+    network: string
+  }
+  
+  export interface AwayTeam {
+    id: number
+    name: string
+    abbrev: string
+    score?: number
+    sog?: number
+    logo: string
+  }
+  
+  export interface HomeTeam {
+    id: number
+    name: string
+    abbrev: string
+    score?: number
+    sog?: number
+    logo: string
+  }
+  
+  export interface Clock {
+    timeRemaining: string
+    secondsRemaining: number
+    running: boolean
+    inIntermission: boolean
+  }
+  
+  export interface Goal {
+    period: number
+    timeInPeriod: string
+    playerId: number
+    name: string
+    mugshot: string
+    teamAbbrev: string
+    goalsToDate: number
+    awayScore: number
+    homeScore: number
+    strength: string
+  }
+  
+  export interface TeamLeader {
+    id: number
+    name: string
+    headshot: string
+    teamAbbrev: string
+    category: string
+    value: number
+  }
+  

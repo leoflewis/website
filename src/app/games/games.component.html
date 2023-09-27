@@ -1,10 +1,14 @@
 
 <br>
 <mat-card *ngFor="let game of games">
+    <h3>{{ game.startTimeUTC | date :'short'}}, {{game.venue}}</h3>
     <div class="row">
         <div class="column">
             <div class="favored">
+                <br>
+                <h2>{{game.homeTeam.name}} </h2>
                 <img mat-card-image  src="https://assets.nhle.com/logos/nhl/svg/{{game.homeTeam.abbrev}}_light.svg">
+                <p>{{game.homeTeam.abbrev}} </p>
                 <h1>{{game.homeTeam.score}} </h1>
                 <p>Predicted win probability:</p>
                 <h1>40%</h1>
@@ -12,23 +16,32 @@
         </div>
         <div class="column">
             <div class="not-favored">
+                <br>
+                <h2>{{game.awayTeam.name}}</h2>
                 <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{game.awayTeam.abbrev}}_light.svg">
+                <p>{{game.awayTeam.abbrev}}</p>
                 <h1>{{game.awayTeam.score}}</h1>
                 <p>Predicted win probability:</p>
                 <h1>60%</h1>
             </div>
         </div>
     </div>
-    <p>{{game.gameState}} {{ game.startTimeUTC | date :'short'}}</p>
-    <p>{{game.venue}}</p>
+
+    <h2 *ngIf="game.clock">{{game.clock.timeRemaining}}</h2>
+
+    <h1 *ngIf="game.period == 1">{{game.period}}st</h1>
+    <h1 *ngIf="game.period == 2">{{game.period}}nd</h1>
+    <h1 *ngIf="game.period == 3">{{game.period}}rd</h1>
+    <h1 *ngIf="game.period == 4">OT</h1>
+    <h1 *ngIf="game.period == 5">SO</h1>
+    <h1>{{game.gameState}}</h1>
     <button mat-icon-button matSuffix (click)="onClick(game)">
         <mat-icon>forward icon</mat-icon>
     </button>
-    <p>Click to show details below.</p>
+    <p>Click to show details at the bottom of the page.</p>
 </mat-card>
-
 <div>
-    <ng-container *ngIf="game"> 
+    <ng-container *ngIf="showGame"> 
         <h3>{{this.game.id}}</h3>
     </ng-container> 
 </div>

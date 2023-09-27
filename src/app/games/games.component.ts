@@ -12,6 +12,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class GamesComponent {
   game: Game;
   games: Game[];
+  showGame: boolean = false;
 
   constructor(private http: HttpClient){
     this.games = [];
@@ -19,7 +20,7 @@ export class GamesComponent {
 
   ngOnInit(){
     this.getGames().subscribe(data => {
-      this.games = data.gameWeek[0].games;
+      this.games = data.games;
     });
   }
 
@@ -29,11 +30,10 @@ export class GamesComponent {
 
   onClick(e: Game){
     this.game = e;
+    this.showGame = true;
   }
 
   getGames(){
-    return this.http.get<GameMessage>("https://api-web.nhle.com/v1/schedule/2023-10-10", {
-      headers: new HttpHeaders().set('content-type', 'application/json').set('Access-Control-Allow-Origin', 'http://localhost:4200')
-    }); 
+    return this.http.get<GameMessage>("https://api-web.nhle.com/v1/score/now"); 
   }
 }
