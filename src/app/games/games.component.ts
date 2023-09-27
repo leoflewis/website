@@ -31,6 +31,7 @@ export class GamesComponent {
   onClick(e: Game){
     this.game = e;
     this.showGame = true;
+    window.scrollTo(0,document.body.scrollHeight);
   }
 
   getGames(){

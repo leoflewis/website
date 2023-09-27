@@ -14,7 +14,7 @@ export class TeamsComponent {
     teamObj: new FormControl('MIN'),
     year: new FormControl('20222023'),
     type: new FormControl("1"),
-    start: new FormControl<Date | null>(new Date(2022, 9, 15)),
+    start: new FormControl<Date | null>(new Date(2023, 9, 15)),
     end: new FormControl<Date | null>(null),
   });
   minDate: Date;
@@ -30,7 +30,7 @@ export class TeamsComponent {
   constructor(private http: HttpClient){
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(2022, 6, 1);
-    this.maxDate = new Date(2023, 6, 1);
+    this.maxDate = new Date(2025, 6, 1);
   }
 
   ngOnInit(){
@@ -49,7 +49,7 @@ export class TeamsComponent {
     if(this.form.value.year == "20232024"){
       this.minDate = new Date(2023, 9, 1);
       this.maxDate = new Date(2024, 6, 1);
-      this.form.value.start = new Date(2023, 6, 15);
+      this.form.value.start = new Date(2023, 9, 15);
     }
     if(this.form.value.year == "20222023"){
       this.minDate = new Date(2022, 9, 1);

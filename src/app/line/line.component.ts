@@ -34,7 +34,8 @@ export class LineComponent {
         ]
       },
       options: {
-        aspectRatio:2.5
+        maintainAspectRatio: false,
+        responsive: true
       }   
     });
   }

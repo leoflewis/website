@@ -46,7 +46,8 @@ export class BarComponent implements OnDestroy{
         ]
       },
       options: {
-        aspectRatio:2.5
+        maintainAspectRatio: false,
+        responsive: true
       }
     });
   }

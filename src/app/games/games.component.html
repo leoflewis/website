@@ -41,7 +41,11 @@
     <p>Click to show details at the bottom of the page.</p>
 </mat-card>
 <div>
-    <ng-container *ngIf="showGame"> 
-        <h3>{{this.game.id}}</h3>
+    <ng-container *ngIf="showGame">
+        <h1 class="column">{{this.game.awayTeam.name}} at {{this.game.homeTeam.name}}</h1>
+        <h2 class="column">{{this.game.awayTeam.score}} - {{this.game.homeTeam.score}}</h2>
+        <h3 class="column">{{this.game.id}}</h3>
+        <app-rink ></app-rink>
+        <app-line ></app-line>
     </ng-container> 
 </div>
