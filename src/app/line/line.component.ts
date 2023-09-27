@@ -23,12 +23,12 @@ export class LineComponent {
 	       datasets: [
           {
             label: "Goals",
-            data: ['10','20', '30', '40', '50','50', '45', '30'],
+            data: ['10','20', '30', '40', '50','60', '70', '80'],
             backgroundColor: 'navy'
           },
           {
             label: "Assists",
-            data: ['10', '30', '45', '37', '45','40', '32', '20'],
+            data: ['10', '30', '45', '37', '50','60', '70', '80'],
             backgroundColor: 'red'
           }  
         ]

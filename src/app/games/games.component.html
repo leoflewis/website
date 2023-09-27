@@ -1,6 +1,6 @@
 
 <br>
-<mat-card *ngFor="let game of games">
+<mat-card class="game" *ngFor="let game of games">
     <h3>{{ game.startTimeUTC | date :'short'}}, {{game.venue}}</h3>
     <div class="row">
         <div class="column">
@@ -45,7 +45,14 @@
         <h1 class="column">{{this.game.awayTeam.name}} at {{this.game.homeTeam.name}}</h1>
         <h2 class="column">{{this.game.awayTeam.score}} - {{this.game.homeTeam.score}}</h2>
         <h3 class="column">{{this.game.id}}</h3>
+
         <app-rink ></app-rink>
         <app-line ></app-line>
+        <h1 class="column">Scoring</h1>
+        <mat-card class="scoring" *ngFor="let goal of this.game.goals">
+            <h3>{{goal.name}} at {{goal.timeInPeriod}} in {{goal.period}}</h3>
+            <img mat-card-image src="{{goal.mugshot}}">
+            <h2>{{goal.awayScore}} - {{goal.homeScore}}</h2>
+        </mat-card>
     </ng-container> 
 </div>
