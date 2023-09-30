@@ -45,14 +45,25 @@
         <h1 class="column">{{this.game.awayTeam.name}} at {{this.game.homeTeam.name}}</h1>
         <h2 class="column">{{this.game.awayTeam.score}} - {{this.game.homeTeam.score}}</h2>
         <h3 class="column">{{this.game.id}}</h3>
-
-        <app-rink ></app-rink>
-        <app-line ></app-line>
+        <div>
+            <app-rink ></app-rink>
+        </div>
+        <div>
+            <app-line ></app-line>
+        </div>
         <h1 class="column">Scoring</h1>
-        <mat-card class="scoring" *ngFor="let goal of this.game.goals">
-            <h3>{{goal.name}} at {{goal.timeInPeriod}} in {{goal.period}}</h3>
-            <img mat-card-image src="{{goal.mugshot}}">
-            <h2>{{goal.awayScore}} - {{goal.homeScore}}</h2>
-        </mat-card>
+        <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
+            <div fxFlex="25%"  fxLayoutWrap class="scoring" *ngFor="let goal of this.game.goals">
+                <mat-card>
+                    <h1>{{goal.teamAbbrev}}</h1>
+                    <p>{{goal.name}}</p>
+                    <h2>{{goal.awayScore}} - {{goal.homeScore}}</h2>
+                    <img mat-card-image src="{{goal.mugshot}}">
+                    <h3>{{goal.timeInPeriod}} in {{goal.period}}</h3>
+                    <br>
+                </mat-card>
+                <br>
+            </div>
+        </div>
     </ng-container> 
 </div>

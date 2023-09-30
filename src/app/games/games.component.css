@@ -20,6 +20,15 @@ h1,h2, h3, p{
 .scoring{
     border: 2px;
     background-color: white;
+    overflow-wrap: normal;
+    min-width: 25%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
 }
 
 /* Create two equal columns that sits next to each other */
@@ -32,8 +41,8 @@ h1,h2, h3, p{
 
 img{
     align-self: center;
-    height: 150px;
-    width: 150px;
+    height: 50%;
+    width: 50%;
 }
 
 button{
