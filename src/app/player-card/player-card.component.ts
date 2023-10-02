@@ -90,7 +90,7 @@ export class PlayerCardComponent {
   }
 
   getPlayerBio(id: number){
-    return this.http.get<PlayerBio>("https://api-web.nhle.com/v1/player/" + id + "/landing");
+    return this.http.get<PlayerBio>("https://hockey-stats-data.azurewebsites.net//player-proxy?id=" + id);
   }
 
   getPlayerData(id: number){

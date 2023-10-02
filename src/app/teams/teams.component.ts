@@ -97,7 +97,7 @@ export class TeamsComponent {
 
   getRoster(id: string | undefined | null, year: string | undefined | null){
     if(id != null && id != undefined){
-      return this.http.get<Roster>("https://api-web.nhle.com/v1/roster/" + id + "/" + year)
+      return this.http.get<Roster>("https://hockey-stats-data.azurewebsites.net/rosters?id=" + id + "&year=" + year)
     }
     else{
       return
