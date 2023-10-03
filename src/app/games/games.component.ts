@@ -35,6 +35,6 @@ export class GamesComponent {
   }
 
   getGames(){
-    return this.http.get<GameMessage>("https://api-web.nhle.com/v1/score/now"); 
+    return this.http.get<GameMessage>("https://hockey-stats-data.azurewebsites.net/score-proxy"); 
   }
 }
