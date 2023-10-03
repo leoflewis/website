@@ -1,6 +1,6 @@
 # Hockey Stats
 
-This is an NHL Hockey Stats website. It can be found [here](https://calm-moss-0cb806010.3.azurestaticapps.net/)
+This is an NHL Hockey Stats website. It can be found [here](https://calm-moss-0cb806010.3.azurestaticapps.net/). <br>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
 
 ## Development server
