@@ -1,0 +1,31 @@
+{
+    "routes": [
+        {
+            "route":"players"
+        },
+        {
+            "route":"upcoming"
+        },
+        {
+            "route":"skaters"
+        },
+        {
+            "route":"todaygames"
+        },
+        {
+            "route":"historic"
+        },
+        {
+            "route":"teams"
+        },
+        {
+            "route":"compare-teams"
+        },
+        {
+            "route":"compare-players"
+        }
+    ],
+    "navigationFallback": {
+      "rewrite": "games.component.html"
+    }
+}
