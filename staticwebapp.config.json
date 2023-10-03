@@ -26,6 +26,6 @@
         }
     ],
     "navigationFallback": {
-      "rewrite": "games.component.html"
+      "rewrite": "index.html"
     }
 }
