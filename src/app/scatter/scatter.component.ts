@@ -16,10 +16,17 @@ export class ScatterComponent {
   public graph: any;
   data: any;
   @Input() inputData: TeamStatData[];
+  @Input() xLabel: string;
+  @Input() yLabel: string;
   labels: string[];
   points: point[];
 
   ngOnInit(): void {
+    this.setData()
+    this.createChart();
+  }
+  
+  setData(){
     this.labels = [
       this.inputData[0].name, this.inputData[1].name, this.inputData[2].name, this.inputData[3].name, this.inputData[4].name, this.inputData[5].name, this.inputData[6].name, this.inputData[7].name, this.inputData[8].name, this.inputData[9].name, this.inputData[10].name,
       this.inputData[11].name, this.inputData[12].name, this.inputData[13].name, this.inputData[14].name, this.inputData[15].name, this.inputData[16].name, this.inputData[17].name, this.inputData[18].name, this.inputData[19].name, this.inputData[20].name,
@@ -42,10 +49,7 @@ export class ScatterComponent {
         backgroundColor: 'blue'
       }],
     };
-    this.createChart();
   }
-  
-
 
   createChart(){
     this.graph = new Chart("scatter", {
@@ -56,17 +60,25 @@ export class ScatterComponent {
           y: {
             title: {
               display: true,
-              text: 'xGA'
+              text: this.yLabel
             }
           },
           x: {
             title: {
               display: true,
-              text: 'xGF'
+              text: this.xLabel
             }
           }
         }
       }
     });
+  }
+
+  ngOnChanges(){
+    if(this.graph){
+      this.graph.destroy();
+      this.setData();
+      this.createChart();
+    }
   }
 }

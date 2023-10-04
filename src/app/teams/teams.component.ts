@@ -47,12 +47,12 @@ export class TeamsComponent {
 
   onChange(){
     if(this.form.value.year == "20232024"){
-      this.minDate = new Date(2023, 9, 1);
+      this.minDate = new Date(2023, 8, 31);
       this.maxDate = new Date(2024, 6, 1);
       this.form.value.start = new Date(2023, 9, 15);
     }
     if(this.form.value.year == "20222023"){
-      this.minDate = new Date(2022, 9, 1);
+      this.minDate = new Date(2022, 8, 31);
       this.maxDate = new Date(2023, 6, 1);
       this.form.value.start = new Date(2022, 9, 10);
     }
