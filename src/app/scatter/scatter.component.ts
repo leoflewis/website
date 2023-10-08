@@ -60,8 +60,9 @@ export class ScatterComponent {
           y: {
             title: {
               display: true,
-              text: this.yLabel
-            }
+              text: this.yLabel,
+            },
+            reverse: true
           },
           x: {
             title: {

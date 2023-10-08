@@ -24,7 +24,9 @@
     <P *ngIf="playerBio.position == 'G'" >Realized goals compared to expected.</P>
     <br>
     <br>
-    <app-rink [shots]="this.shots"></app-rink>
+    <div style="overflow-x: scroll;">
+        <app-rink [shots]="this.shots"></app-rink>
+    </div>
     <p>
         <span style="color: Aqua;">Goals</span>
         , Shots and

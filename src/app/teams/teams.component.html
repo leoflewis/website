@@ -44,7 +44,7 @@
         <div *ngIf="form.value.year" >
             <h3>{{form.value.year}}</h3>
         </div>
-        <div>
+        <div style="overflow-x: scroll;">
             <app-rink [shots]="this.shots"></app-rink>
         </div>        
         <br>
@@ -53,7 +53,7 @@
             <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
                 <div fxFlex="25%"  *ngFor="let player of roster.forwards">
                     <mat-card >
-                        <h2>{{player.firstName}} {{player.lastName}}</h2>
+                        <h2>{{player.firstName.default}} {{player.lastName.default}}</h2>
                         <h3>{{player.positionCode}}</h3>
                         <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{player.id}}.jpg">
                         <br>

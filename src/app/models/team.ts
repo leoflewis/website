@@ -20,8 +20,12 @@ export interface Roster{
 export interface RosterItem{
     id: number,
     headshot: string,
-    firstName: string,
-    lastName: string,
+    firstName: {
+        default: string
+    },
+    lastName: {
+        default: string
+    },
     sweaterNumber: number,
     positionCode: string,
     shootsCatches: string,

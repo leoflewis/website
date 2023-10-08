@@ -1,3 +1,5 @@
+import { Shot } from "./shot"
+
 export interface GameMessage {
     prevDate: string
     currentDate: string
@@ -100,3 +102,24 @@ export interface GameMessage {
     value: number
   }
   
+  export interface ShotAtTime{
+    awayShots: number[],
+    awayxG: number[],
+    homeShots: number[],
+    homexG: number[],
+    times: number[]
+  }
+  export interface GameTotals{
+    awayShots: number,
+    awayxg: number,
+    homeShots: number,
+    homexG: number
+  }
+
+  export interface GameShotsMessage{
+    message: {
+      shots: Shot[],
+      shotsByTime: ShotAtTime, 
+      totals: GameTotals
+    }
+  }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import Chart from 'chart.js/auto';
 
 @Component({
@@ -9,6 +9,10 @@ import Chart from 'chart.js/auto';
 export class LineComponent {
   public graph: any;
   public chartid!: string;
+  @Input() xLabels: number[];
+  @Input() homeShots: number[];
+  @Input() awayShots: number[];
+
   ngOnInit(): void {
     this.createChart();
     this.chartid = "Chart2";
@@ -19,24 +23,45 @@ export class LineComponent {
       type: 'line', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: ['2015-2016', '2016-2017', '2017-2018','2018-2019', '2019-2020', '2020-2021', '2021-2022','2022-2023', '2023-2024', '2024-2025'], 
+        labels: this.xLabels, 
 	       datasets: [
           {
-            label: "Goals",
-            data: ['10','20', '30', '40', '50','60', '70', '80'],
-            backgroundColor: 'navy'
+            label: "Home",
+            data: this.homeShots,
+            backgroundColor: 'rgb(255, 99, 132)'
           },
           {
-            label: "Assists",
-            data: ['10', '30', '45', '37', '50','60', '70', '80'],
-            backgroundColor: 'red'
+            label: "Away",
+            data: this.awayShots,
+            backgroundColor: 'rgb(54, 162, 235)'
           }  
         ]
       },
       options: {
         maintainAspectRatio: false,
-        responsive: true
+        responsive: true,
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: "Volume",
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Time"
+            }
+          }
+        }
       }   
     });
+  }
+
+  ngOnChanges(){
+    if(this.graph){
+      this.graph.destroy();
+      this.createChart();
+    }
   }
 }

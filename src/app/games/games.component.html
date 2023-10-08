@@ -42,14 +42,32 @@
 </mat-card>
 <div>
     <ng-container *ngIf="showGame">
-        <h1 class="column">{{this.game.awayTeam.name}} at {{this.game.homeTeam.name}}</h1>
-        <h2 class="column">{{this.game.awayTeam.score}} - {{this.game.homeTeam.score}}</h2>
-        <h3 class="column">{{this.game.id}}</h3>
-        <div>
-            <app-rink ></app-rink>
+        <h1 class="column">Game Details:</h1>
+        <h1 class="column">
+            <span style="color: rgb(54, 162, 235);">{{this.game.awayTeam.name}} </span>
+            at 
+            <span style="color: rgb(255, 99, 132);">{{this.game.homeTeam.name}}</span>
+        </h1>
+        <h1 class="column">{{this.game.awayTeam.score}} - {{this.game.homeTeam.score}}</h1>
+        <h2 class="column">xG: {{this.totals.homexG}} - {{this.totals.awayxg}}</h2>
+        <h2 class="column">Shots: {{this.totals.homeShots}} - {{this.totals.awayShots}}</h2>
+        <div *ngIf="this.shots" style="display: flex;flex-wrap: no-wrap;overflow-x: auto;">
+            <app-rink [shots]="this.shots"></app-rink>
         </div>
-        <div>
-            <app-line ></app-line>
+        <br>
+        <div *ngIf="this.shotsByTime">
+            <div>
+                <form class="full-width">
+                    <mat-form-field class="full-width">
+                        <mat-label>Type</mat-label>
+                        <mat-select>
+                            <mat-option [value]="0">Shots</mat-option>
+                            <mat-option [value]="1">xG</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+            </div>
+            <app-line [xLabels]="this.shotsByTime.times" [homeShots]="this.shotsByTime.homeShots" [awayShots]="this.shotsByTime.awayShots" ></app-line>
         </div>
         <h1 class="column">Scoring</h1>
         <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
