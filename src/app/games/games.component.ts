@@ -4,6 +4,7 @@ import { GameMessage, Game, GameShotsMessage, ShotAtTime, GameTotals } from '../
 import { formatDate } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { Shot } from '../models/shot';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-games',
@@ -17,6 +18,12 @@ export class GamesComponent {
   shots: Shot[];
   shotsByTime: ShotAtTime;
   totals: GameTotals;
+  dataSet1: number[];
+  dataSet2: number[];
+  form = new FormGroup({
+    type: new FormControl<number>(0)
+  });
+
 
   constructor(private http: HttpClient){
     this.games = [];
@@ -34,15 +41,29 @@ export class GamesComponent {
 
   onClick(e: Game){
     this.game = e;
-    this.showGame = true;
     this.getShots().subscribe(data => {
       this.shots = data.message.shots;
       this.shotsByTime = data.message.shotsByTime;
       this.totals = data.message.totals;
+      this.dataSet1 = this.shotsByTime.homeShots;
+      this.dataSet2 = this.shotsByTime.awayShots;
+      this.showGame = true;
     });
     window.scrollTo(0,document.body.scrollHeight);
   }
 
+
+  onChange(){
+    if (this.form.value.type == 0){
+      this.dataSet1 = this.shotsByTime.homeShots;
+      this.dataSet2 = this.shotsByTime.awayShots;
+    }
+    if (this.form.value.type == 1){
+      this.dataSet1 = this.shotsByTime.homexG;
+      this.dataSet2 = this.shotsByTime.awayxG;
+    }
+
+  }
 
   getShots(){
     return this.http.get<GameShotsMessage>("https://hockey-stats-data.azurewebsites.net/live-game?id=" + this.game.id.toString()); 

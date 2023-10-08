@@ -48,26 +48,39 @@
             at 
             <span style="color: rgb(255, 99, 132);">{{this.game.homeTeam.name}}</span>
         </h1>
-        <h1 class="column">{{this.game.awayTeam.score}} - {{this.game.homeTeam.score}}</h1>
-        <h2 class="column">xG: {{this.totals.homexG}} - {{this.totals.awayxg}}</h2>
-        <h2 class="column">Shots: {{this.totals.homeShots}} - {{this.totals.awayShots}}</h2>
+        <h1 class="column">
+            <span style="color: rgb(54, 162, 235);">{{this.game.awayTeam.score}} </span>
+            - 
+            <span style="color: rgb(255, 99, 132);">{{this.game.homeTeam.score}}</span>
+        </h1>
+        <h2 class="column">
+            xG:
+            <span style="color: rgb(54, 162, 235);">{{this.totals.awayxg}} </span>
+            - 
+            <span style="color: rgb(255, 99, 132);">{{this.totals.homexG}}</span>
+            </h2>
+        <h2 class="column">Shots: 
+            <span style="color: rgb(54, 162, 235);">{{this.totals.awayShots}} </span>
+            - 
+            <span style="color: rgb(255, 99, 132);">{{this.totals.homeShots}}</span>
+        </h2>
         <div *ngIf="this.shots" style="display: flex;flex-wrap: no-wrap;overflow-x: auto;">
             <app-rink [shots]="this.shots"></app-rink>
         </div>
         <br>
         <div *ngIf="this.shotsByTime">
             <div>
-                <form class="full-width">
+                <form [formGroup]="form" class="full-width">
                     <mat-form-field class="full-width">
                         <mat-label>Type</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="type" (selectionChange)="onChange()">
                             <mat-option [value]="0">Shots</mat-option>
                             <mat-option [value]="1">xG</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </form>
             </div>
-            <app-line [xLabels]="this.shotsByTime.times" [homeShots]="this.shotsByTime.homeShots" [awayShots]="this.shotsByTime.awayShots" ></app-line>
+            <app-line [xLabels]="this.shotsByTime.times" [homeShots]="this.dataSet1" [awayShots]="this.dataSet2" ></app-line>
         </div>
         <h1 class="column">Scoring</h1>
         <div class="container" fxLayout="row wrap" fxLayoutGap="16px">
