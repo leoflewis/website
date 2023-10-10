@@ -90,7 +90,9 @@ export interface GameMessage {
     period: number
     timeInPeriod: string
     playerId: number
-    name: string
+    name: {
+      default:string
+    }
     mugshot: string
     teamAbbrev: string
     goalsToDate: number

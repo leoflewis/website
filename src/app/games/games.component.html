@@ -87,7 +87,7 @@
             <div fxFlex="25%"  fxLayoutWrap class="scoring" *ngFor="let goal of this.game.goals">
                 <mat-card>
                     <h1>{{goal.teamAbbrev}}</h1>
-                    <p>{{goal.name}}</p>
+                    <p>{{goal.name.default}}</p>
                     <h2>{{goal.awayScore}} - {{goal.homeScore}}</h2>
                     <img mat-card-image src="{{goal.mugshot}}">
                     <h3>{{goal.timeInPeriod}} in {{goal.period}}</h3>
