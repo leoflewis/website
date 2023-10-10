@@ -30,7 +30,9 @@ export interface GameMessage {
     season: number
     gameType: number
     gameDate: string
-    venue: string
+    venue: {
+      default: string
+    }
     startTimeUTC: string
     easternUTCOffset: string
     venueUTCOffset: string
@@ -57,7 +59,9 @@ export interface GameMessage {
   
   export interface AwayTeam {
     id: number
-    name: string
+    name: {
+      default: string
+    }
     abbrev: string
     score?: number
     sog?: number
@@ -66,7 +70,9 @@ export interface GameMessage {
   
   export interface HomeTeam {
     id: number
-    name: string
+    name: {
+      default: string
+    }
     abbrev: string
     score?: number
     sog?: number
