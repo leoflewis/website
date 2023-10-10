@@ -28,7 +28,7 @@
     </div>
 
     <h2 *ngIf="game.clock">{{game.clock.timeRemaining}}</h2>
-
+    <h3 *ngIf="game.clock && game.clock.inIntermission">Intermission</h3>
     <h1 *ngIf="game.period == 1">{{game.period}}st</h1>
     <h1 *ngIf="game.period == 2">{{game.period}}nd</h1>
     <h1 *ngIf="game.period == 3">{{game.period}}rd</h1>

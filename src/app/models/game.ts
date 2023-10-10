@@ -42,7 +42,7 @@ export interface GameMessage {
     awayTeam: AwayTeam
     homeTeam: HomeTeam
     gameCenterLink: string
-    clock?: Clock
+    clock: Clock
     period?: number
     situationCode?: string
     goals?: Goal[]
