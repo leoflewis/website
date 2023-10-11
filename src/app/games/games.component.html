@@ -4,7 +4,7 @@
     <h3>{{ game.startTimeUTC | date :'short'}}, {{game.venue.default}}</h3>
     <div class="row">
         <div class="column">
-            <div class="favored">
+            <div class="{{game.homeTeam.prediction}}">
                 <br>
                 <h2>{{game.homeTeam.name.default}} </h2>
                 <img mat-card-image  src="https://assets.nhle.com/logos/nhl/svg/{{game.homeTeam.abbrev}}_light.svg">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="column">
-            <div class="not-favored">
+            <div class="{{game.awayTeam.prediction}}">
                 <br>
                 <h2>{{game.awayTeam.name.default}}</h2>
                 <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{game.awayTeam.abbrev}}_light.svg">

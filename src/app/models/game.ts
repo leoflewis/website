@@ -67,6 +67,7 @@ export interface GameMessage {
     sog?: number
     logo: string
     winProbability: number
+    prediction: string
   }
   
   export interface HomeTeam {
@@ -79,6 +80,7 @@ export interface GameMessage {
     sog?: number
     logo: string
     winProbability: number
+    prediction: string
   }
   
   export interface Clock {
