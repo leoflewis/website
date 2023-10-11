@@ -11,7 +11,7 @@
                 <p>{{game.homeTeam.abbrev}} </p>
                 <h1>{{game.homeTeam.score}} </h1>
                 <p>Predicted win probability:</p>
-                <h1>40%</h1>
+                <h1>{{game.homeTeam.winProbability}}%</h1>
             </div>
         </div>
         <div class="column">
@@ -22,7 +22,7 @@
                 <p>{{game.awayTeam.abbrev}}</p>
                 <h1>{{game.awayTeam.score}}</h1>
                 <p>Predicted win probability:</p>
-                <h1>60%</h1>
+                <h1>{{game.awayTeam.winProbability}}%</h1>
             </div>
         </div>
     </div>
@@ -43,6 +43,8 @@
 <div>
     <ng-container *ngIf="showGame">
         <h1 class="column">Game Details:</h1>
+        <h2 *ngIf="this.game.clock" class="column">{{this.game.clock.timeRemaining}} remaining Period: {{this.game.period}}</h2>
+        <h3 *ngIf="this.game.clock && this.game.clock.inIntermission" class="column">Intermission</h3>
         <h1 class="column">
             <span style="color: rgb(54, 162, 235);">{{this.game.awayTeam.name.default}} </span>
             at 
