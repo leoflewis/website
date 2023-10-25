@@ -4,10 +4,10 @@
 }
 
 .Favored{
-    background-color: #a8adef;
+    background-color: #a8efb0;
 }
 .notFavored{
-    background-color:#eca6a6;
+    background-color:#f28484;
 }
 .row {
     display: flex;

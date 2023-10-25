@@ -20,7 +20,7 @@ import {MatSort, MatSortModule, Sort } from '@angular/material/sort';
 
 export class SkatersTableComponent implements AfterViewInit{
   myForm = new FormGroup({
-    year: new FormControl()
+    year: new FormControl<string>("20232024")
   });
   dataSource = new MatTableDataSource<Skater>();
   displayedColumns = ['PlayerName', 'GP', 'Genos', 'Apples', 'Points', 'xG','Shots', 'Hits', 'TOI', 'GWG', 'OTG', 'PenM', 'FOPCT', 'SPct', 'Blocks', 'PM', 'shifts', 'PPG', 'PPP', 'PPTOI', 'SHG', 'SHP', 'SHTOI'];
@@ -63,7 +63,7 @@ export class SkatersTableComponent implements AfterViewInit{
         xG: 0
       }]
     this.dataSource = new MatTableDataSource(this.sampleSkater);
-    this.getSkaterData(20222023).subscribe(data => {
+    this.getSkaterData("20222023").subscribe(data => {
       this.dataSource = new MatTableDataSource(data.message.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -77,14 +77,14 @@ export class SkatersTableComponent implements AfterViewInit{
 
   changeClient(value: object) {
     console.log(value);
-    this.getSkaterData(20222023).subscribe(data => {
+    this.getSkaterData(this.myForm.value.year).subscribe(data => {
       this.dataSource = new MatTableDataSource(data.message.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
-  getSkaterData(season: number){
+  getSkaterData(season: string | null | undefined){
     return this.http.get<SkaterMessage>("https://hockey-stats-data.azurewebsites.net/skaters?season=" + season);
   }
 }

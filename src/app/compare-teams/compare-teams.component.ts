@@ -15,7 +15,7 @@ export class CompareTeamsComponent {
   yLabel: string = "xGA";
   form = new FormGroup({
     stat: new FormControl<number>(0),
-    year: new FormControl<number>(20222023)
+    year: new FormControl<string>("20222023")
   });
 
   constructor(private http: HttpClient){
@@ -49,21 +49,22 @@ export class CompareTeamsComponent {
         this.yLabel = "FA";
         break;
     }
-    this.getTeamStats(type, '').subscribe(data =>{
+    this.getTeamStats(type, this.form.value.year).subscribe(data =>{
       this.data = data.message.data;
     });
   }
 
 
-  getTeamStats(type: any, year: string){
+  getTeamStats(type: any, year: string | null | undefined){
+    console.log(year);
     if(type != '' &&  year == ''){
       return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?type=" + type.toString())
     }
     if(type == '' &&  year != ''){
-      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?year=" + year)
+      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?season=" + year)
     }
     if(type != '' &&  year != ''){
-      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?year=" + year + "&type=" + type)
+      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?season=" + year + "&type=" + type)
     }
     return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats")
   }
