@@ -3,8 +3,12 @@ export interface PlayerBio {
     currentTeamId: number
     currentTeamAbbrev: string
     fullTeamName: string
-    firstName: string
-    lastName: string
+    firstName: {
+        default: string
+    }
+    lastName: {
+        default: string
+    }
     teamLogo: string
     sweaterNumber: number
     position: string
@@ -15,7 +19,9 @@ export interface PlayerBio {
     weightInPounds: number
     weightInKilograms: number
     birthDate: string
-    birthCity: string
+    birthCity: {
+        default: string
+    }
     birthCountry: string
     shootsCatches: string
     draftDetails: DraftDetails

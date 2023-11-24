@@ -5,13 +5,13 @@
             <div mat-card-avatar class="example-header-image" *ngIf="playerBio.currentTeamId">
                 <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{playerBio.currentTeamAbbrev}}_light.svg">
             </div>
-            <mat-card-title>{{playerBio.firstName}} {{playerBio.lastName}}</mat-card-title>
+            <mat-card-title>{{playerBio.firstName.default}} {{playerBio.lastName.default}}</mat-card-title>
             <mat-card-subtitle>{{playerBio.position}}</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-image class="headshot"  src="https://cms.nhl.bamgrid.com/images/headshots/current/168x168/{{playerBio.playerId}}.jpg">
             <mat-card-content>
                 <p>DOB: {{playerBio.birthDate}} </p>       
-                <p>{{playerBio.birthCity}} {{playerBio.birthCountry}}</p>
+                <p>{{playerBio.birthCity.default}} {{playerBio.birthCountry}}</p>
                 <p>{{playerBio.heightInInches}} in {{playerBio.weightInPounds}} lbs</p>
                 <p>Drafted: {{playerBio.draftDetails.year}} Round: {{playerBio.draftDetails.round}}</p>
                 <p>Pick: {{playerBio.draftDetails.pickInRound}} Overall: {{playerBio.draftDetails.overallPick}}</p>
