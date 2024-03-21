@@ -16,5 +16,6 @@ export interface SkaterPercentileData{
     Season: number,
     ShotsPercentile: number,
     playerid: number,
-    xGPercentile: number
+    xGPercentile: number,
+    TeamName: string
 }
