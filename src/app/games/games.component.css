@@ -3,6 +3,10 @@
     background-color: #b1b1b7;
 }
 
+
+.details{
+    background-color: white;
+}
 .Favored{
     background-color: #a8efb0;
 }
@@ -43,6 +47,12 @@ img{
     align-self: center;
     height: 50%;
     width: 50%;
+}
+
+.mug{
+    height: auto;
+    width: 20%;
+    float: right;
 }
 
 button{

@@ -36,7 +36,7 @@ import { CompareTeamsComponent } from './compare-teams/compare-teams.component';
 import { ScatterComponent } from './scatter/scatter.component';
 import { ComparePlayersComponent } from './compare-players/compare-players.component';
 import { RadarComponent } from './radar/radar.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { RadarComponent } from './radar/radar.component';
     MatSortModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTabsModule
   ],
   exports: [
     MatSortModule

@@ -13,7 +13,7 @@ export class LineComponent {
   @Input() homeShots: number[];
   @Input() awayShots: number[];
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.createChart();
     this.chartid = "Chart2";
   }

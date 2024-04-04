@@ -5,6 +5,7 @@ import { formatDate } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { Shot } from '../models/shot';
 import { FormControl, FormGroup } from '@angular/forms';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-games',
@@ -15,6 +16,8 @@ export class GamesComponent {
   game: Game;
   games: Game[];
   showGame: boolean = false;
+  displayedColumns = ['Shooter', 'Time', 'Result']
+  dataSource = new MatTableDataSource<Shot>();
   shots: Shot[];
   shotsByTime: ShotAtTime;
   totals: GameTotals;
@@ -23,6 +26,7 @@ export class GamesComponent {
   form = new FormGroup({
     type: new FormControl<number>(0)
   });
+  lineChart: boolean = false;
 
 
   constructor(private http: HttpClient){
@@ -43,6 +47,7 @@ export class GamesComponent {
     this.game = e;
     this.getShots().subscribe(data => {
       this.shots = data.message.shots;
+      console.log(this.shots);
       this.shotsByTime = data.message.shotsByTime;
       this.totals = data.message.totals;
       this.dataSet1 = this.shotsByTime.homeShots;
@@ -52,6 +57,10 @@ export class GamesComponent {
     window.scrollTo(0,document.body.scrollHeight);
   }
 
+  ngAfterContentChecked() {
+    console.log("checked");
+    this.lineChart = true;
+  }
 
   onChange(){
     if (this.form.value.type == 0){
