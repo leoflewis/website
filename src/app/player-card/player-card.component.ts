@@ -3,6 +3,7 @@ import { GoalieMessage, Player, PlayerData } from '../models/player';
 import { HttpClient } from '@angular/common/http';
 import { PlayerBio } from '../models/player-bio';
 import { Shot } from '../models/shot';
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-player-card',
@@ -90,15 +91,15 @@ export class PlayerCardComponent {
   }
 
   getPlayerBio(id: number){
-    return this.http.get<PlayerBio>("https://hockey-stats-data.azurewebsites.net//player-proxy?id=" + id);
+    return this.http.get<PlayerBio>(Constants.BaseAPIURL + "player-proxy?id=" + id);
   }
 
   getPlayerData(id: number){
-    return this.http.get<PlayerData>("https://hockey-stats-data.azurewebsites.net/player?playerid=" + id +"&season=20222023");
+    return this.http.get<PlayerData>(Constants.BaseAPIURL + "player?playerid=" + id +"&season=20222023");
   }
 
   getGoalieData(id: number){
-    return this.http.get<GoalieMessage>("https://hockey-stats-data.azurewebsites.net/goalie?playerid=" + id +"&season=20222023");
+    return this.http.get<GoalieMessage>(Constants.BaseAPIURL + "goalie?playerid=" + id +"&season=20222023");
   }
 
 }

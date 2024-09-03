@@ -25,8 +25,12 @@
     <div id="end"></div>
     <div id="end2"></div>
     <div id="ShotsContainer">
-        <div *ngFor="let shot of shots;">
-            <div class="shot" [ngStyle]="{'margin-left.px': shot.x, 'margin-top.px': shot.y, 'height.px':shot.xG, 'width.px':shot.xG, 'background-color':shot.Result}"></div>
+        <div *ngFor="let shot of shots; let i = index">
+            <div class="shot" [ngStyle]="{'margin-left.px': shot.x, 'margin-top.px': shot.y, 'height.px':shot.xG, 'width.px':shot.xG, 'background-color':shot.Result}" (click)="addText(i)">
+                {{shot.label}}
+            </div>
         </div>
     </div>
+    <h1 class="name">{{displayText}}</h1>
 </div>
+

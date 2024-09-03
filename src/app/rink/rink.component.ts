@@ -11,9 +11,23 @@ import { Shot } from '../models/shot';
 })
 export class RinkComponent {
   @Input() shots: Shot[];
-
+  displayText: string = '';
   constructor(private http: HttpClient) {      
     this.shots = [];
   }
-  
+
+  ngOnInit(){
+    this.displayText = '';
+    console.log()
+  }
+
+  addText(shot: number){
+    if (!this.shots[shot].label){
+      this.shots[shot].label = this.shots[shot].xG.toString();
+      this.displayText = this.shots[shot].xG.toString();
+    }else{
+      this.shots[shot].label = "";
+      this.displayText = '';
+    }
+  }
 }

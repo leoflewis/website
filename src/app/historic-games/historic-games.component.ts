@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NHLTeam, NHLTeamMessage } from '../models/team';
 import { FormControl, FormGroup } from '@angular/forms';
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-historic-games',
@@ -33,7 +34,7 @@ export class HistoricGamesComponent {
   
   // This might have to get updated to the new endpoint. but for now we will leave it.
   getTeams(){
-    return this.http.get<NHLTeamMessage>("https://hockey-stats-data.azurewebsites.net/teams");
+    return this.http.get<NHLTeamMessage>(Constants.BaseAPIURL + "teams");
   }
 
 }

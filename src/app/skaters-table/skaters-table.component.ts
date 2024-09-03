@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {MatSort, MatSortModule, Sort } from '@angular/material/sort';
-
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-skaters-table',
@@ -85,7 +85,7 @@ export class SkatersTableComponent implements AfterViewInit{
   }
 
   getSkaterData(season: string | null | undefined){
-    return this.http.get<SkaterMessage>("https://hockey-stats-data.azurewebsites.net/skaters?season=" + season);
+    return this.http.get<SkaterMessage>(Constants.BaseAPIURL + "skaters?season=" + season);
   }
 }
 

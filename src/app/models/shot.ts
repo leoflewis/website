@@ -2,5 +2,6 @@ export interface Shot {
     x: number,
     y: number,
     xG: number,
-    Result: string
+    Result: string,
+    label?: string
   }

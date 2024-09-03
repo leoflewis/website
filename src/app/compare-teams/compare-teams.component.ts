@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TeamStatData, TeamStatsMessage } from '../models/team';
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-compare-teams',
@@ -58,14 +59,14 @@ export class CompareTeamsComponent {
   getTeamStats(type: any, year: string | null | undefined){
     console.log(year);
     if(type != '' &&  year == ''){
-      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?type=" + type.toString())
+      return this.http.get<TeamStatsMessage>(Constants.BaseAPIURL + "teams-stats?type=" + type.toString())
     }
     if(type == '' &&  year != ''){
-      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?season=" + year)
+      return this.http.get<TeamStatsMessage>(Constants.BaseAPIURL + "teams-stats?season=" + year)
     }
     if(type != '' &&  year != ''){
-      return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats?season=" + year + "&type=" + type)
+      return this.http.get<TeamStatsMessage>(Constants.BaseAPIURL + "teams-stats?season=" + year + "&type=" + type)
     }
-    return this.http.get<TeamStatsMessage>("https://hockey-stats-data.azurewebsites.net/teams-stats")
+    return this.http.get<TeamStatsMessage>(Constants.BaseAPIURL + "teams-stats")
   }
 }

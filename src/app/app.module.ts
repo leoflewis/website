@@ -38,6 +38,10 @@ import { ComparePlayersComponent } from './compare-players/compare-players.compo
 import { RadarComponent } from './radar/radar.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
+export const Constants = {
+  BaseAPIURL : "https://hockey-data.llewislogic.com/"
+}
+
 @NgModule({
   declarations: [
     AppComponent,

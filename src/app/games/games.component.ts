@@ -6,6 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Shot } from '../models/shot';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-games',
@@ -75,10 +76,10 @@ export class GamesComponent {
   }
 
   getShots(){
-    return this.http.get<GameShotsMessage>("https://hockey-stats-data.azurewebsites.net/live-game?id=" + this.game.id.toString()); 
+    return this.http.get<GameShotsMessage>(Constants.BaseAPIURL + "live-game?id=" + this.game.id.toString()); 
   }
 
   getGames(){
-    return this.http.get<GameMessage>("https://hockey-stats-data.azurewebsites.net/score-proxy"); 
+    return this.http.get<GameMessage>(Constants.BaseAPIURL + "score-proxy"); 
   }
 }

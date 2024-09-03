@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NHLTeam, NHLTeamMessage, Roster, RosterItem, TeamMessage } from '../models/team';
 import { Shot } from '../models/shot';
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-teams',
@@ -92,12 +93,12 @@ export class TeamsComponent {
 
   // This might have to get updated to the new endpoint. but for now we will leave it.
   getTeams(){
-    return this.http.get<NHLTeamMessage>("https://hockey-stats-data.azurewebsites.net/teams");
+    return this.http.get<NHLTeamMessage>(Constants.BaseAPIURL + "teams");
   }
 
   getRoster(id: string | undefined | null, year: string | undefined | null){
     if(id != null && id != undefined){
-      return this.http.get<Roster>("https://hockey-stats-data.azurewebsites.net/rosters?id=" + id + "&year=" + year)
+      return this.http.get<Roster>(Constants.BaseAPIURL + "rosters?id=" + id + "&year=" + year)
     }
     else{
       return
@@ -105,11 +106,11 @@ export class TeamsComponent {
   }
 
   getShots(id: string | undefined | null, season: string | undefined | null, taken: string){
-    return this.http.get<TeamMessage>("https://hockey-stats-data.azurewebsites.net/team?team=" + id + "&season=" + season + "&taken=" + taken);
+    return this.http.get<TeamMessage>(Constants.BaseAPIURL + "team?team=" + id + "&season=" + season + "&taken=" + taken);
   }
 
 
   getShotsbyDate(id: string | undefined | null, season: string | undefined | null, start: string | undefined | null, end: string | undefined | null, taken: string){
-    return this.http.get<TeamMessage>("https://hockey-stats-data.azurewebsites.net/team?team=" + id + "&season=" + season + "&start=" + start + "&end=" + end + "&taken=" + taken);
+    return this.http.get<TeamMessage>(Constants.BaseAPIURL + "team?team=" + id + "&season=" + season + "&start=" + start + "&end=" + end + "&taken=" + taken);
   }
 }

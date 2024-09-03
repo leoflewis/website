@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Player, PlayerData, PlayersResponse, Stats, gameType, split, stat, type } from '../models/player';
-
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-player-landing',
@@ -47,11 +47,11 @@ export class PlayerLandingComponent {
   }
 
   getPlayers(){
-    return this.http.get<PlayersResponse>("https://hockey-stats-data.azurewebsites.net/players");
+    return this.http.get<PlayersResponse>(Constants.BaseAPIURL + "players");
   }
 
   getPlayerData(id: number){
-    return this.http.get<PlayerData>("https://hockey-stats-data.azurewebsites.net/player?playerid=" + id +"&season=20222023");
+    return this.http.get<PlayerData>(Constants.BaseAPIURL + "player?playerid=" + id +"&season=20222023");
   }
 
   displayFn(user: Player): string {

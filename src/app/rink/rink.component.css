@@ -251,3 +251,11 @@
     position: absolute;
     z-index: 1;
   }
+  .name{
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .shot:hover{
+    content: "on";
+  }

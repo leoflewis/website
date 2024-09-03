@@ -5,6 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, startWith } from 'rxjs';
 import { SkaterPercentile, SkaterPercentileData } from '../models/percentile';
+import {Constants} from '../app.module';
 
 @Component({
   selector: 'app-compare-players',
@@ -78,11 +79,11 @@ export class ComparePlayersComponent {
   }
 
   getPlayers(){
-    return this.http.get<PlayersResponse>("https://hockey-stats-data.azurewebsites.net/players");
+    return this.http.get<PlayersResponse>(Constants.BaseAPIURL + "players");
   }
 
   getPlayerPercentile(id: number){
-    return this.http.get<SkaterPercentile>("https://hockey-stats-data.azurewebsites.net/skaters-percent?id=" + id + "&season=" + this.season);
+    return this.http.get<SkaterPercentile>(Constants.BaseAPIURL + "skaters-percent?id=" + id + "&season=" + this.season);
   }
 
   displayFn(user: Player): string {
