@@ -1,3 +1,67 @@
 form, mat-form-field{
     width: 100%;
 }
+.game{
+    width: 100%;
+    background-color: #b1b1b7;
+}
+
+
+.details{
+    background-color: white;
+}
+.Favored{
+    background-color: #a8efb0;
+}
+.notFavored{
+    background-color:#f28484;
+}
+.row {
+    display: flex;
+}
+
+h1,h2, h3, p{
+    align-self: center;
+}
+
+.scoring{
+    border: 2px;
+    background-color: white;
+    overflow-wrap: normal;
+    min-width: 25%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    padding: 10px;
+    align-items: end;
+    text-align: center;
+}
+
+img{
+    align-self: center;
+    height: 50%;
+    width: 50%;
+}
+
+.mug{
+    height: auto;
+    width: 20%;
+    float: right;
+}
+
+button{
+    align-self: center;
+}
+
+.full-width{
+    width: 100%;
+}

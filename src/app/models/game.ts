@@ -8,6 +8,25 @@ export interface GameMessage {
     oddsPartners: OddsPartner[]
     games: Game[]
   }
+
+  export interface HistoricGame{
+    AwayScore: number,
+    AwayShots: number,
+    AwayTeam: number,
+    AwayXG: number,
+    GameDate: Date,
+    GameId: number,
+    GameType: string,
+    HomeScore: number,
+    HomeShots: number,
+    HomeTeam: number,
+    HomeWin: number,
+    HomeWinProba: number,
+    HomeXG: number,
+    Season: number,
+    AwayTeamName: string, 
+    HomeTeamName: string
+  }
   
   export interface GameWeek {
     date: string

@@ -23,3 +23,35 @@
         </button> 
     </form>
 </div>
+<mat-card class="game" *ngFor="let game of games">
+    <h3>{{ game.GameDate | date :'short'}}</h3>
+    <div class="row">
+        <div class="column">
+            <div>
+                <br>
+                <h2>{{game.HomeTeamName}} </h2>
+                <img mat-card-image  src="https://assets.nhle.com/logos/nhl/svg/{{game.HomeTeamName}}_light.svg">
+                <h1>{{game.HomeScore}} </h1>
+                <p>Predicted win probability:</p>
+                <h1>{{(game.HomeWinProba * 100).toFixed(2)}}%</h1>
+            </div>
+        </div>
+        <div class="column">
+            <div>
+                <br>
+                <h2>{{game.AwayTeamName}}</h2>
+                <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{game.AwayTeamName}}_light.svg">
+                <h1>{{game.AwayScore}}</h1>
+                <p>Predicted win probability:</p>
+                <h1>{{(100 - (game.HomeWinProba* 100)).toFixed(2)}}%</h1>
+            </div>
+        </div>
+    </div>
+
+    <h1>Final</h1>
+    <button mat-icon-button matSuffix (click)="onClick(game)">
+        <mat-icon>forward icon</mat-icon>
+    </button>
+    <p>Click to show details at the bottom of the page.</p>
+    
+</mat-card>
