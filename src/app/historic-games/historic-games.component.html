@@ -26,8 +26,8 @@
 <mat-card class="game" *ngFor="let game of games">
     <h3>{{ game.GameDate | date :'short'}} {{game.GameId}}</h3>
     <div class="row">
-        <div class="column">
-            <div>
+        <div class="column" >
+            <div class="{{game.HomeTeamClass}}">
                 <br>
                 <h2>{{game.HomeTeamName}} </h2>
                 <img mat-card-image  src="https://assets.nhle.com/logos/nhl/svg/{{game.HomeTeamName}}_light.svg">
@@ -36,8 +36,8 @@
                 <h1>{{(game.HomeWinProba * 100).toFixed(2)}}%</h1>
             </div>
         </div>
-        <div class="column">
-            <div>
+        <div class="column" >
+            <div class="{{game.AwayTeamClass}}">
                 <br>
                 <h2>{{game.AwayTeamName}}</h2>
                 <img mat-card-image src="https://assets.nhle.com/logos/nhl/svg/{{game.AwayTeamName}}_light.svg">
@@ -68,10 +68,10 @@
             <h2 class="column">
                 <span style="color: rgb(54, 162, 235);">{{game.AwayXG}}</span>
                 - xG -
-                <span style="color: rgb(255, 99, 132);">{{game.HomeScore}}</span>
+                <span style="color: rgb(255, 99, 132);">{{game.HomeXG}}</span>
                 </h2>
             <h2 class="column">
-                <span style="color: rgb(54, 162, 235);">{{game.HomeXG}}</span>
+                <span style="color: rgb(54, 162, 235);">{{game.AwayShots}}</span>
                 - Shots -
                 <span style="color: rgb(255, 99, 132);">{{game.HomeShots}}</span>
             </h2>

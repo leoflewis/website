@@ -27,6 +27,8 @@ export interface GameMessage {
     AwayTeamName: string, 
     HomeTeamName: string,
     goals?: Goal[]
+    AwayTeamClass?: string,
+    HomeTeamClass?: string;
   }
   
   export interface GameWeek {

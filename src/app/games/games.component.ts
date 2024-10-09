@@ -62,7 +62,6 @@ export class GamesComponent {
   }
 
   ngAfterContentChecked() {
-    console.log("checked");
     this.lineChart = true;
   }
 

@@ -63,6 +63,15 @@ export class HistoricGamesComponent {
     }
     this.getGames(this.form.value.teamObj as string, date).subscribe(games => {
       this.games = games;
+      this.games.forEach(element => {
+        if(element.HomeWinProba > .5){
+          element.AwayTeamClass = "notFavored";
+          element.HomeTeamClass = "Favored";
+        } else{
+          element.AwayTeamClass = "Favored";
+          element.HomeTeamClass = "notFavored";
+        }
+      });
     });
   }
 
