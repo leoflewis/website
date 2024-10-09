@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
 import { Shot } from '../models/shot';
 
-
-
 @Component({
   selector: 'app-rink',
   templateUrl: './rink.component.html',
@@ -18,7 +16,7 @@ export class RinkComponent {
 
   ngOnInit(){
     this.displayText = '';
-    console.log()
+    console.log(this.shots)
   }
 
   addText(shot: number){

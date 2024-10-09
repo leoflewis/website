@@ -24,7 +24,7 @@
     </form>
 </div>
 <mat-card class="game" *ngFor="let game of games">
-    <h3>{{ game.GameDate | date :'short'}}</h3>
+    <h3>{{ game.GameDate | date :'short'}} {{game.GameId}}</h3>
     <div class="row">
         <div class="column">
             <div>
@@ -52,6 +52,90 @@
     <button mat-icon-button matSuffix (click)="onClick(game)">
         <mat-icon>forward icon</mat-icon>
     </button>
-    <p>Click to show details at the bottom of the page.</p>
+    <div *ngIf="this.gameId === game.GameId" class="details">
+        <ng-container>
+            <h1 class="column">Game Details:</h1>
+            <h1 class="column">
+                <span style="color: rgb(54, 162, 235);">{{game.HomeTeamName}}</span>
+                at 
+                <span style="color: rgb(255, 99, 132);">{{game.AwayTeamName}}</span>
+            </h1>
+            <h1 class="column">
+                <span style="color: rgb(54, 162, 235);">{{game.AwayScore}}</span>
+                - Score -
+                <span style="color: rgb(255, 99, 132);">{{game.HomeScore}}</span>
+            </h1>
+            <h2 class="column">
+                <span style="color: rgb(54, 162, 235);">{{game.AwayXG}}</span>
+                - xG -
+                <span style="color: rgb(255, 99, 132);">{{game.HomeScore}}</span>
+                </h2>
+            <h2 class="column">
+                <span style="color: rgb(54, 162, 235);">{{game.HomeXG}}</span>
+                - Shots -
+                <span style="color: rgb(255, 99, 132);">{{game.HomeShots}}</span>
+            </h2>
+            <br>
+            <form [formGroup]="miniform" class="full-width">
+                <mat-form-field class="full-width">
+                    <mat-label>Type</mat-label>
+                    <mat-select formControlName="type" (selectionChange)="onTypeChange()">
+                        <mat-option [value]="0">Shots</mat-option>
+                        <mat-option [value]="1">xG</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+            <ng-container *ngIf="this.line">
+                <app-line [xLabels]="this.shotTimes.times" [homeShots]="this.dataSet1" [awayShots]="this.dataSet2" ></app-line>
+            </ng-container>
+            <mat-tab-group  mat-align-tabs="center">
+                <mat-tab label="Scoring">
+                    <h1 class="column">Scoring</h1>
+                    <mat-card *ngFor="let goal of this.oldGoals">
+                        <mat-card-content >
+                            <img mat-card-image class="mug" src="https://assets.nhle.com/mugs/nhl/20242025/{{goal.TeamName}}/{{goal.Player1}}.png">
+                            <h1 style="display: inline; padding: 2%;">{{goal.TeamName}}</h1>
+                            <h3 style="display: inline;">{{goal.PeriodTime}} in {{goal.Period}}</h3>
+                            <br>
+                            <h3 style="display: inline; padding: 2%;">{{goal.AwayScore}} - {{goal.HomeScore}}</h3>  
+                            <p style="display: inline; padding: 2%;">{{goal.PlayerName}}</p>                      
+                        </mat-card-content>
+                      </mat-card>                  
+                </mat-tab>
+                <mat-tab label="Rink">
+                    <br>
+                    <div *ngIf="this.shots" style="display: flex;flex-wrap: no-wrap;overflow-x: auto;">
+                        <app-rink [shots]="this.shots"></app-rink>
+                    </div>
+                    <br>
+                </mat-tab>
+               <!--  <mat-tab label="Shots"> -->
+                    <!-- <div class="mat-elevation-z8" style="overflow-x:scroll;" > -->
     
+                        <!-- <table mat-table [dataSource]="this.dataSource" matSort matSortStart="desc"> -->
+                            <!-- <ng-container matColumnDef="Shooter" > -->
+                                <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header="Name">Name</th> -->
+                                <!-- <td mat-cell *matCellDef="let skater"> {{skater.PlayerName}} </td> -->
+                            <!-- </ng-container> -->
+                      
+                            <!-- <ng-container matColumnDef="Time" > -->
+                                <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th> -->
+                                <!-- <td mat-cell  mat-cell *matCellDef="let skater"> {{skater.GP}} </td> -->
+                            <!-- </ng-container> -->
+    
+                            <!-- <ng-container matColumnDef="Result"> -->
+                                <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header>Result</th> -->
+                                <!-- <td mat-cell  mat-cell *matCellDef="let skater"> {{skater.GP}} </td> -->
+                            <!-- </ng-container> -->
+    
+                            <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+                            <!-- <tr mat-row class="mat-cell" *matRowDef="let row; columns: displayedColumns;"></tr> -->
+                        <!-- </table> -->
+                    
+                    <!-- </div> -->
+                    <!-- <mat-paginator [pageSizeOptions]="[25,50,100]" showFirstLastButtons aria-label="Select page"></mat-paginator> -->
+                <!-- </mat-tab> -->
+            </mat-tab-group>
+        </ng-container> 
+    </div>
 </mat-card>

@@ -24,6 +24,9 @@ export class GamesComponent {
   totals: GameTotals;
   dataSet1: number[];
   dataSet2: number[];
+  selectedIndex: number | null = null;
+  gameId:number;
+
   form = new FormGroup({
     type: new FormControl<number>(0)
   });
@@ -44,8 +47,9 @@ export class GamesComponent {
     return formatDate(date, "dd/MM/yyyy", "en-US")
   }
 
-  onClick(e: Game){
+  onClick(e: Game,index: number){
     this.game = e;
+    this.selectedIndex = this.selectedIndex === index ? null : index;
     this.getShots().subscribe(data => {
       this.shots = data.message.shots;
       console.log(this.shots);
@@ -55,7 +59,6 @@ export class GamesComponent {
       this.dataSet2 = this.shotsByTime.awayShots;
       this.showGame = true;
     });
-    window.scrollTo(0,document.body.scrollHeight);
   }
 
   ngAfterContentChecked() {
@@ -72,7 +75,6 @@ export class GamesComponent {
       this.dataSet1 = this.shotsByTime.homexG;
       this.dataSet2 = this.shotsByTime.awayxG;
     }
-
   }
 
   getShots(){

@@ -25,7 +25,8 @@ export interface GameMessage {
     HomeXG: number,
     Season: number,
     AwayTeamName: string, 
-    HomeTeamName: string
+    HomeTeamName: string,
+    goals?: Goal[]
   }
   
   export interface GameWeek {
@@ -133,12 +134,23 @@ export interface GameMessage {
     value: number
   }
   
+  export interface OldGoal {
+    Period: number, 
+    PeriodTime: string, 
+    Player1: number, 
+    PlayerName: string, 
+    TeamName: string,
+    HomeScore: number,
+    AwayScore: number
+  }
+
   export interface ShotAtTime{
     awayShots: number[],
     awayxG: number[],
     homeShots: number[],
     homexG: number[],
-    times: number[]
+    times: number[],
+    shots: Shot[]
   }
   export interface GameTotals{
     awayShots: number,

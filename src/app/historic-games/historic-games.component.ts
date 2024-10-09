@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NHLTeam, NHLTeamMessage } from '../models/team';
-import { HistoricGame } from '../models/game';
+import { HistoricGame, Game, ShotAtTime, OldGoal} from '../models/game';
+import { Shot } from "../models/shot";
 import { FormControl, FormGroup } from '@angular/forms';
 import {Constants} from '../app.module';
 
@@ -15,9 +16,19 @@ export class HistoricGamesComponent {
     date: new FormControl(''),
     teamObj: new FormControl('')
   });
-
+  miniform = new FormGroup({
+    type: new FormControl<number>(0)
+  });
+  game: Game;
+  gameId: number;
   teams: NHLTeam[];
   games: HistoricGame[];
+  shots: Shot[];
+  shotTimes: ShotAtTime;
+  dataSet1: number[];
+  dataSet2: number[];
+  line: boolean = false;
+  oldGoals: OldGoal[];
 
   constructor(private http: HttpClient){
 
@@ -30,7 +41,18 @@ export class HistoricGamesComponent {
   }
 
   onClick(game: HistoricGame){
-
+    this.gameId = game.GameId;
+    this.getGameShots().subscribe(response =>{
+      this.shots = response.shots;
+      this.shotTimes = response;
+      this.dataSet1 = this.shotTimes.homeShots;
+      this.dataSet2 = this.shotTimes.awayShots;
+      this.line = true;
+      console.log(this.shots);
+    });
+    this.getGameGoals().subscribe(response => {
+      this.oldGoals = response;
+    });
   }
 
   onSubmit(){
@@ -41,8 +63,18 @@ export class HistoricGamesComponent {
     }
     this.getGames(this.form.value.teamObj as string, date).subscribe(games => {
       this.games = games;
-      console.log(this.games)
     });
+  }
+
+  onTypeChange(){
+    if (this.miniform.value.type == 0){
+      this.dataSet1 = this.shotTimes.homeShots;
+      this.dataSet2 = this.shotTimes.awayShots;
+    }
+    if (this.miniform.value.type == 1){
+      this.dataSet1 = this.shotTimes.homexG;
+      this.dataSet2 = this.shotTimes.awayxG;
+    }
   }
 
   getGames(id: string|null, date:string|null){
@@ -58,9 +90,15 @@ export class HistoricGamesComponent {
     return this.http.get<HistoricGame[]>(Constants.BaseAPIURL + "games");
   }
   
-  // This might have to get updated to the new endpoint. but for now we will leave it.
   getTeams(){
     return this.http.get<NHLTeamMessage>(Constants.BaseAPIURL + "teams");
   }
 
+  getGameShots(){
+    return this.http.get<ShotAtTime>(Constants.BaseAPIURL + "game-shots?gameId=" + this.gameId);
+  }
+
+  getGameGoals(){
+    return this.http.get<OldGoal[]>(Constants.BaseAPIURL + "game-goals?gameId=" + this.gameId);
+  }
 }

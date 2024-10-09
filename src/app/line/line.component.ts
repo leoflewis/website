@@ -18,10 +18,18 @@ export class LineComponent {
     this.chartid = "Chart2";
   }
 
+  ngOnDestroy(): void {
+    if (this.graph) {
+      this.graph.destroy();
+    }
+  }
+
   createChart(){
+    if(this.graph){
+      this.graph.destroy()
+    }
     this.graph = new Chart("line", {
       type: 'line', //this denotes tha type of chart
-
       data: {// values on X-Axis
         labels: this.xLabels, 
 	       datasets: [
