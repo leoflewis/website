@@ -31,24 +31,18 @@ export interface GoalieMessage{
 export interface ZData{
     PM: number,
     Assists: number,
-    Blocks: number,
-    EVTOI: number,
     GWG: number,
     Games: number,
     Goals: number,
-    Hits: number,
     OTG: number,
     PIMs: number,
     Points: number,
     PPGoals: number,
     PPPoints: number,
-    PPTOI: number,
     Spct: number,
     SHG: number,
     SHP: number,
-    SHTOI: number,
     SUM: number,
-    Shifts: number,
     Shots: number
 }
   

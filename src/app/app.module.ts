@@ -37,6 +37,7 @@ import { ScatterComponent } from './scatter/scatter.component';
 import { ComparePlayersComponent } from './compare-players/compare-players.component';
 import { RadarComponent } from './radar/radar.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { HalfRinkComponent } from './half-rink/half-rink.component';
 
 export const Constants = {
   BaseAPIURL : "https://hockey-data.llewislogic.com/"
@@ -58,6 +59,7 @@ export const Constants = {
     ScatterComponent,
     ComparePlayersComponent,
     RadarComponent,
+    HalfRinkComponent,
   ],
   imports: [
     BrowserModule,
