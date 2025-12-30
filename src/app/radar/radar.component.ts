@@ -23,17 +23,14 @@ export class RadarComponent {
       labels: [
         'Apples',
         'Genos',
-        'Blocks',
         'Points',
-        'Hits',
         'xG',
         'PPPoints',
-        'Shots',
-        'SHToi'
+        'Shots'
       ],
       datasets: [{
         label: this.player1Data.PlayerName,
-        data: [this.player1Data.AssistsPercentile, this.player1Data.GoalsPercentile, this.player1Data.BlocksPercentile, this.player1Data.PointsPercentile, this.player1Data.HitsPercentile, this.player1Data.xGPercentile, this.player1Data.PPPoints, this.player1Data.ShotsPercentile, this.player1Data.SHToi],
+        data: [this.player1Data.AssistsPercentile, this.player1Data.GoalsPercentile, this.player1Data.PointsPercentile, this.player1Data.xGPercentile, this.player1Data.PPPoints, this.player1Data.ShotsPercentile],
         fill: true,
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: 'rgb(255, 99, 132)',
@@ -43,7 +40,7 @@ export class RadarComponent {
         pointHoverBorderColor: 'rgb(255, 99, 132)'
       }, {
         label: this.player2Data.PlayerName,
-        data: [this.player2Data.AssistsPercentile, this.player2Data.GoalsPercentile, this.player2Data.BlocksPercentile, this.player2Data.PointsPercentile, this.player2Data.HitsPercentile, this.player2Data.xGPercentile, this.player2Data.PPPoints, this.player2Data.ShotsPercentile, this.player2Data.SHToi],
+        data: [this.player2Data.AssistsPercentile, this.player2Data.GoalsPercentile, this.player2Data.PointsPercentile, this.player2Data.xGPercentile, this.player2Data.PPPoints, this.player2Data.ShotsPercentile],
         fill: true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgb(54, 162, 235)',
